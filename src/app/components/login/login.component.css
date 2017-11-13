@@ -1,0 +1,69 @@
+body {
+    background: #EEE;
+}
+
+.login-box {
+    margin: auto;
+    margin-top: 10%;
+    width: 90%;
+}
+
+.mat-card {
+    background-color: white;
+}
+
+.logo {
+    width: 100%;
+    text-align: center;
+    background: url("/assets/images/eye-bg.jpg");
+    background-size: cover;
+    background-position: center left;
+}
+
+.logo img{
+    width: 199px;
+    margin: 20px;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.mat-card-title {
+    font-weight: bolder;
+}
+
+.card-header-image {
+    background: url("/assets/images/admin-logo.png");
+    background-size: cover;
+}
+
+@media screen and (min-width: 768px) {
+    .login-box {
+        width: 30%;
+    }
+}
+
+.vibrating{
+    position: relative;
+    animation: 0.3s vibration 1;
+}
+
+.login-error {
+    padding: 10px;
+    color: white;
+    background-color: rgb(224, 53, 53);
+    box-shadow: 1px 1px 8px rgb(114, 7, 7);
+}
+
+@keyframes vibration {
+    0%, 40%, 80%{
+        left: -10px;
+    }
+    20%, 60%{
+        left: 10px;
+    }
+    100%{
+        left: 0;
+    }
+}
