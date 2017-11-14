@@ -69,34 +69,25 @@ export class AuthService {
     }
   }
 
-  public isLoggedIn(): Promise<boolean> {
-    return new Promise<boolean>((resolve, reject) => {
-      if (!window.localStorage) {
-        reject({
-          'message': 'No se puede acceder a datos de sesión'
-        });
-      }
+  public isLoggedIn(): boolean {
+    if (!window.localStorage) {
+      return false;
+    }
 
-      const storageData = window.localStorage.getItem('oat');
+    const storageData = window.localStorage.getItem('oat');
 
-      if (storageData === null) {
-        resolve(false);
-      }
+    if (storageData === null) {
+      return false;
+    }
 
-      const loginData = JSON.parse(storageData);
+    const loginData = JSON.parse(storageData);
 
-      const expired = this.isExpired(loginData);
-      if (!expired) {
-        resolve(true);
-      }
+    const expired = this.isExpired(loginData);
+    if (expired) {
+      return false;
+    }
 
-      if (!loginData.r) {
-        resolve(false);
-      }
-
-      this.refreshToken(loginData, resolve, reject);
-
-    });
+    return true;
   }
 
   /*
@@ -105,27 +96,30 @@ export class AuthService {
   private isExpired(loginData): boolean {
     const now = (new Date()).getTime();
     if (now < loginData.x) {
-      return true;
+      return false;
     }
-    return false;
+    return true;
   }
 
   /*
   | Refresca el token desde el servidor
   */
-  private refreshToken(loginData, resolve, reject) {
-    const refresh_token = localStorage.getItem('oatr');
-    if (refresh_token === null) {
-      resolve(false);
-    }
+  public refreshToken(loginData): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const refresh_token = localStorage.getItem('oatr');
+      if (refresh_token === null) {
+        resolve(false);
+      }
 
-    this.tokenRefreshRequest(refresh_token)
-    .subscribe(data => {
-      this.user.tokens = data;
-      this.registerToken(data.access_token, data.expires_in, data.refresh_token, true, reject);
-      resolve(true);
-    }, error => {
-      resolve(false);
+      this.tokenRefreshRequest(refresh_token)
+      .subscribe(data => {
+        this.user.tokens = data;
+        this.registerToken(data.access_token, data.expires_in, data.refresh_token, true, reject);
+        resolve(true);
+      }, error => {
+        resolve(false);
+      });
+
     });
   }
 
