@@ -4,4 +4,5 @@
 export interface User {
     email: string;
     tokens: any;
+    data: any;
 }

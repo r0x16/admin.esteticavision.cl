@@ -17,8 +17,9 @@ export class AuthService {
       this.tokenRequest(username, password)
       .subscribe(data => {
         this.user = {
-          email: username,
-          tokens: data
+          'email': username,
+          'tokens': data,
+          'data': null
         };
         this.registerToken(data.access_token, data.expires_in, data.refresh_token, remember, reject);
         resolve(true);
@@ -98,6 +99,9 @@ export class AuthService {
     });
   }
 
+  /*
+  | Comprueba si un token en el almacenamiento local ha caducado.
+  */
   private isExpired(loginData): boolean {
     const now = (new Date()).getTime();
     if (now < loginData.x) {
@@ -106,6 +110,9 @@ export class AuthService {
     return false;
   }
 
+  /*
+  | Refresca el token desde el servidor
+  */
   private refreshToken(loginData, resolve, reject) {
     const refresh_token = localStorage.getItem('oatr');
     if (refresh_token === null) {
@@ -122,6 +129,9 @@ export class AuthService {
     });
   }
 
+  /*
+  | Obtiene la petición para realizar el refresh del token en el servidor.
+  */
   private tokenRefreshRequest(refresh_token: string) {
     return this.http.post<any>(`${environment.apiUrl}/oauth/token`, {
       'grant_type': 'refresh_token',
@@ -130,6 +140,29 @@ export class AuthService {
       'client_secret': environment.apiClientSecret,
       'scope': '*'
     });
+  }
+
+  /*
+  | Obtiene los datos del usuario conectado desde el servidor
+  */
+  public getUser(): Promise<User> {
+    return new Promise<User>((resolve, reject) => {
+      if (this.user.data !== null) {
+        resolve(this.user);
+      }
+
+      this.getUserRequest()
+      .subscribe(data => {
+        this.user.data = data;
+        resolve(this.user);
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+
+  private getUserRequest() {
+    return this.http.get(`${environment.apiUrl}/api/user`);
   }
 
 }
