@@ -4,7 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 // Módulos y rutas
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './modules/material.module';
+import { InterceptorModule } from './modules/interceptor.module';
 import { AppRoutingModule } from './app-routing.module';
 
 // Servicios
@@ -27,6 +28,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     BrowserModule,
     HttpClientModule,
     MaterialModule,
+    InterceptorModule,
     AppRoutingModule,
     ReactiveFormsModule
   ],
