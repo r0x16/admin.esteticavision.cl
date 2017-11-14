@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
       ]),
       password: new FormControl('meveoyveobien', [
         Validators.required
-      ])
+      ]),
+      remember: new FormControl(true)
     });
     this.loginform.valueChanges.subscribe(() => this.invalidAnimate = false );
   }
@@ -49,13 +50,17 @@ export class LoginComponent implements OnInit {
     const data = this.loginform.value;
 
     try {
-      const logged = await this.auth.login(data.email, data.password);
+      const logged = await this.auth.login(data.email, data.password, data.remember);
       if (logged) {
         this.router.navigate(['/dashboard']);
       }
     } catch (error) {
       this.invalidAnimate = true;
-      this.showResponseError(error);
+      if (error.status !== undefined) {
+        this.showResponseError(error);
+      }else {
+        this.showAnotherError(error);
+      }
     }
 
   }
@@ -70,6 +75,11 @@ export class LoginComponent implements OnInit {
     }else {
       this.errorlogin.message = 'Ha ocurrido un error intentando conectarse con la aplicación.';
     }
+  }
+
+  showAnotherError(error) {
+    this.errorlogin.active = true;
+    this.errorlogin.message = error.message;
   }
 
 }

@@ -28,6 +28,10 @@
         <mat-error *ngIf="password.errors?.required">La contraseña es requerida</mat-error>
       </mat-form-field>
 
+      <mat-checkbox formControlName="remember">
+        Recordarme
+      </mat-checkbox>
+
       <div class="login-error" *ngIf="errorlogin.active">
         {{errorlogin.message}}
       </div>
