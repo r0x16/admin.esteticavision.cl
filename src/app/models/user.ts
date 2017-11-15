@@ -2,7 +2,9 @@
 | Interfaz con los datos registrados del usuario actual
 */
 export interface User {
+    id: number;
+    name: string;
     email: string;
-    tokens: any;
-    data: any;
+    created_at: string;
+    updated_at: string;
 }

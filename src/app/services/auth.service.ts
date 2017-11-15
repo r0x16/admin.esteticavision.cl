@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { User } from '../models/user';
 import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
@@ -16,12 +17,12 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       this.tokenRequest(username, password)
       .subscribe(data => {
-        this.user = {
-          'email': username,
-          'tokens': data,
-          'data': null
-        };
-        this.registerToken(data.access_token, data.expires_in, data.refresh_token, remember, reject);
+        const registered = this.registerToken(data.access_token, data.expires_in, data.refresh_token, remember);
+        if (!registered) {
+          reject({
+            messsage: 'No se pudo registrar la sesión del usuario'
+          });
+        }
         resolve(true);
       },
       err => {
@@ -47,12 +48,10 @@ export class AuthService {
   /*
   | Registra el token y la expiración en el localStorage en caso de estar disponible.
   */
-  private registerToken(token: string, seconds: number, remember_token: string, remember: boolean, reject) {
+  public registerToken(token: string, seconds: number, remember_token: string, remember: boolean): boolean {
     // No se admite otro tipo de registro de autenticación.
     if (!window.localStorage) {
-      reject({
-        message: 'No se pudo registrar la sesión del usuario'
-      });
+      return false;
     }
 
     let expiration = new Date();
@@ -67,6 +66,8 @@ export class AuthService {
     if (remember) {
       localStorage.setItem('oatr', remember_token);
     }
+
+    return true;
   }
 
   public isLoggedIn(): boolean {
@@ -101,32 +102,14 @@ export class AuthService {
     return true;
   }
 
-  /*
-  | Refresca el token desde el servidor
-  */
-  public refreshToken(loginData): Promise<any> {
-    return new Promise((resolve, reject) => {
-      const refresh_token = localStorage.getItem('oatr');
-      if (refresh_token === null) {
-        resolve(false);
-      }
-
-      this.tokenRefreshRequest(refresh_token)
-      .subscribe(data => {
-        this.user.tokens = data;
-        this.registerToken(data.access_token, data.expires_in, data.refresh_token, true, reject);
-        resolve(true);
-      }, error => {
-        resolve(false);
-      });
-
-    });
+  public getRefreshToken(): string {
+    return localStorage.getItem('oatr');
   }
 
   /*
   | Obtiene la petición para realizar el refresh del token en el servidor.
   */
-  private tokenRefreshRequest(refresh_token: string) {
+  public tokenRefreshRequest(refresh_token: string): Observable<any> {
     return this.http.post<any>(`${environment.apiUrl}/oauth/token`, {
       'grant_type': 'refresh_token',
       'refresh_token': refresh_token,
@@ -141,13 +124,13 @@ export class AuthService {
   */
   public getUser(): Promise<User> {
     return new Promise<User>((resolve, reject) => {
-      if (this.user.data !== null) {
+      if (this.user !== undefined) {
         resolve(this.user);
       }
 
       this.getUserRequest()
       .subscribe(data => {
-        this.user.data = data;
+        this.user = data;
         resolve(this.user);
       }, error => {
         reject(error);
@@ -156,7 +139,20 @@ export class AuthService {
   }
 
   private getUserRequest() {
-    return this.http.get(`${environment.apiUrl}/api/user`);
+    return this.http.get<User>(`${environment.apiUrl}/api/user`);
+  }
+
+  public getAuthorizationHeader() {
+    if (!window.localStorage) {
+      return '';
+    }
+
+    const token = JSON.parse(window.localStorage.getItem('oat'));
+    return `Bearer ${token.t}`;
+  }
+
+  public clean() {
+    window.localStorage.clear();
   }
 
 }
