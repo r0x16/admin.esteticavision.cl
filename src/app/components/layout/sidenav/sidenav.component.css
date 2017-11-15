@@ -1,0 +1,16 @@
+.sidenav-buttons {
+    height: 60px;
+}
+
+.sidenav-buttons .mat-mini-fab:focus {
+    outline: none;
+    border: 0;
+}
+
+.sidenav-buttons .mat-mini-fab {
+    margin: 10px 5px 10px 10px;
+}
+
+.sidenav-menu {
+    padding-top: 10px;
+}

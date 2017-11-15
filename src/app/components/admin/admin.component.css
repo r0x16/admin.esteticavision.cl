@@ -1,0 +1,24 @@
+body{
+    background: #EDECEC;
+}
+
+main {
+    position: relative;
+}
+
+.sidenav {
+    width: 220px;
+    position: absolute;
+    top: 0;
+    height: 100%;
+}
+
+.content {
+    padding: 0 30px;
+    margin: 0 40px 30px 220px;
+}
+
+.mat-card {
+    background: #FFF;
+    margin-bottom: 15px;
+}

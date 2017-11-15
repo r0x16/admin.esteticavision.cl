@@ -1,0 +1,41 @@
+<div class="sidenav-buttons">
+    <button color="primary" mat-mini-fab>
+        <mat-icon aria-label="Example icon-button with a heart icon">email</mat-icon>
+    </button>
+
+    <button color="primary" mat-mini-fab>
+        <mat-icon aria-label="Example icon-button with a heart icon">question_answer</mat-icon>
+    </button>
+</div>
+<div class="sidenav-menu">
+  <mat-nav-list>
+    <mat-list-item>
+      <mat-icon matListIcon>home</mat-icon>
+      <a matLine [routerLink]="['dashboard']">Dashboard</a>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon matListIcon>shopping_cart</mat-icon>
+      <a matLine [routerLink]="['products']">Productos</a>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon matListIcon>layers</mat-icon>
+      <a matLine [routerLink]="['categories']">Categorías</a>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon matListIcon>receipt</mat-icon>
+      <a matLine [routerLink]="['quotations']">Cotizaciones</a>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon matListIcon>photo</mat-icon>
+      <a matLine [routerLink]="['media']">Multimedia</a>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon matListIcon>group</mat-icon>
+      <a matLine [routerLink]="['users']">Usuarios</a>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon matListIcon>settings</mat-icon>
+      <a matLine [routerLink]="['settings']">Configuración</a>
+    </mat-list-item>
+  </mat-nav-list>
+</div>

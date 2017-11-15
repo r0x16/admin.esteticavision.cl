@@ -5,6 +5,8 @@ import { AuthGuardService } from '../services/auth-guard.service';
 
 // Componentes utilizados en el Router
 import { AdminComponent } from '../components/admin/admin.component';
+import { HeaderComponent } from '../components/layout/header/header.component';
+import { SidenavComponent } from '../components/layout/sidenav/sidenav.component';
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
 
 const appRoutes = [{
@@ -12,6 +14,7 @@ const appRoutes = [{
   component: AdminComponent,
   canActivate: [AuthGuardService],
   children: [
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     { path: 'dashboard', component: DashboardComponent }
   ]
 }];
@@ -26,6 +29,8 @@ const appRoutes = [{
   ],
   declarations: [
     AdminComponent,
+    HeaderComponent,
+    SidenavComponent,
     DashboardComponent
   ],
   providers: [

@@ -1,0 +1,25 @@
+<header>
+    <nav class="navbar navbar-dark ev-toolbar">
+        <div class="container-fluid">
+            <div class="col-lg-4 d-none d-lg-block">
+                <a href="/admin/dashboard" class="navbar-brand">
+                    Estetica Visión
+                    <span class="mini">Admin Panel</span>
+                </a>
+            </div>
+            <div class="col-lg-8 text-right">
+                <span class="mini welcome">Bienvenido,</span>
+                {{user?.name}}
+                <button mat-icon-button [matMenuTriggerFor]="loginMenu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #loginMenu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>clear</mat-icon>
+                        <span>Cerrar Sesión</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,34 @@
+.brand {
+    display: inline-block;
+}
+
+.ev-mini-logo {
+    height: 30px;
+}
+
+.mini{
+    font-size: 0.7em;
+    opacity: 0.6;
+}
+
+.mini.welcome {
+    margin-right: 5px;
+}
+
+.ev-toolbar {
+    background: #303D74;
+    color: white;
+    position: relative;
+    font-family: 'Noto Sans', sans-serif !important;
+}
+
+.ev-toolbar::before {
+    content: '';
+    background: #303D74;
+    height: 60px;
+    width: 100%;
+    z-index: -10;
+    position: absolute;
+    left: 0;
+    top: 100%;
+}
