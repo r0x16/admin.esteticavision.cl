@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
     try {
       const logged = await this.auth.login(data.email, data.password, data.remember);
       if (logged) {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/admin/dashboard']);
       }
     } catch (error) {
       this.invalidAnimate = true;
