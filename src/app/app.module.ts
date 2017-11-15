@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 // Módulos y rutas
 import { MaterialModule } from './modules/material.module';
 import { InterceptorModule } from './modules/interceptor.module';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './modules/app-routing.module';
 
 // Servicios
 import { AuthService } from './services/auth.service';

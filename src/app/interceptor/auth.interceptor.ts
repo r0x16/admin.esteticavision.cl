@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/observable/empty';
 
 import { AuthService } from '../services/auth.service';
 import { HttpEventType } from '@angular/common/http/src/response';
@@ -20,13 +21,13 @@ export class AuthInterceptor implements HttpInterceptor {
         this.auth = this.injector.get(AuthService);
         if (this.auth.isLoggedIn()) {
             const authHeader = this.auth.getAuthorizationHeader();
-            const authReq = req.clone({setHeaders: {Authorization: authHeader}});
-            return next.handle(authReq);
+            req = req.clone({setHeaders: {Authorization: authHeader}});
         }
         return next.handle(req)
         .catch(err => {
-            if ((err.status === 401 || err.status === 403) && err.error.error !== 'invalid_request') {
-                return this.auth.tokenRefreshRequest(this.auth.getRefreshToken()).mergeMap(data => {
+            const refresh_token = this.auth.getRefreshToken();
+            if ((err.status === 401 || err.status === 403) && err.error.error !== 'invalid_request' && refresh_token !== null) {
+                return this.auth.tokenRefreshRequest(refresh_token).mergeMap(data => {
                     const registered = this.auth.registerToken(data.access_token, data.expires_in, data.refresh_token, true);
                     if (!registered) {
                         return Observable.throw(err);
@@ -38,7 +39,7 @@ export class AuthInterceptor implements HttpInterceptor {
             }else {
                 this.auth.clean();
                 this.router.navigate(['/login']);
-                return Observable.throw(err);
+                return Observable.empty();
             }
         });
     }
