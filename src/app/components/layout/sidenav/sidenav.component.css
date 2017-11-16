@@ -1,5 +1,5 @@
 .sidenav-buttons {
-    height: 60px;
+    height: 80px;
 }
 
 .sidenav-buttons .mat-mini-fab:focus {
@@ -8,7 +8,7 @@
 }
 
 .sidenav-buttons .mat-mini-fab {
-    margin: 10px 5px 10px 10px;
+    margin: 25px 5px 10px 10px;
 }
 
 .sidenav-menu {
