@@ -10,7 +10,9 @@ import {
   MatMenuModule,
   MatIconModule,
   MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatTabsModule,
+  MatProgressBarModule
 } from '@angular/material';
 
 @NgModule({
@@ -25,7 +27,9 @@ import {
     MatMenuModule,
     MatIconModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule,
+    MatProgressBarModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -38,7 +42,9 @@ import {
     MatMenuModule,
     MatIconModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule,
+    MatProgressBarModule
   ],
   declarations: []
 })

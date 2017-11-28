@@ -1,0 +1,41 @@
+<form [formGroup]="imagesForm" (submit)="onSubmit()">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="file-box-input" appNgDropFiles
+          [ngClass]="{'file-hover': dropZoneHover}"
+          [archivos]="files"
+          (archivoSobre)="fileOnZone($event)"
+          (fileDrop)="fileDropped($event)">
+          <mat-icon>file_upload</mat-icon>
+          <div>Arrastra los archivos acá</div>
+          <div>o</div>
+          <input type="file" name="files[]" id="media-images-files" #mediaImagesFiles multiple>
+          <button mat-raised-button color="primary" (click)="openFileDialog()">
+            Haz clic para seleccionar los archivos
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-6" formArrayName="images">
+        <div *ngFor="let file of files; let i=index" [formGroupName]="i" class="media-dropped-files">
+            <mat-icon (click)="mediaDeleteImage(i)" class="media-delete-image">cancel</mat-icon>
+          <div class="row">
+            <div class="col-lg-4 text-center">
+              <img [src]="file.url" [alt]="file.nombreArchivo">
+            </div>
+            <div class="col-lg-8">
+              <mat-form-field class="description-field">
+                <input matInput type="text" formControlName="name" placeholder="Descripción">
+              </mat-form-field></div>
+          </div>
+          <div class="media-upload-progress" *ngIf="file.estaSubiendo">
+            <mat-progress-bar mode="determinate" [value]="file.progreso"></mat-progress-bar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="media-submit-buttons">
+      <button mat-raised-button color="primary" [disabled]="!permiteCargar || files.length == 0">Añadir a la galería</button>
+  </div>
+</form>
