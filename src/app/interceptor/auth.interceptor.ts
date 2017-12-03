@@ -1,4 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
+import { environment } from '../../environments/environment';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -19,6 +20,11 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         this.auth = this.injector.get(AuthService);
+
+        if (!req.url.startsWith(environment.apiUrl)) {
+            return next.handle(req);
+        }
+
         if (this.auth.isLoggedIn()) {
             const authHeader = this.auth.getAuthorizationHeader();
             req = req.clone({setHeaders: {Authorization: authHeader}});
