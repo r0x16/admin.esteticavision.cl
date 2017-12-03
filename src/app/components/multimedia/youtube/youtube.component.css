@@ -1,0 +1,85 @@
+.full-width {
+    width: 100%;
+}
+
+.alert {
+    margin-top: 10px;
+}
+
+.youtube-logo {
+    width: 80px;
+}
+
+app-media-youtube h3 .step-subtitle {
+    color: #777;
+    font-size: 0.6em;
+}
+
+app-media-youtube h3 {
+    border-bottom: 1px solid #EEE;
+    margin-bottom: 15px;
+    padding: 10px 0;
+}
+
+.video-results {
+    margin: 10px 0;
+}
+
+.video-results .video {
+    outline: 1px solid #e1edf0;
+    outline-offset: -3px;
+    position: relative;
+    padding: 5px;
+    min-height: 100px;
+}
+
+.video-results .video:hover {
+    cursor: pointer;
+    background-color: #EEE;
+}
+
+.video-results .video.selected {
+    background-color: #e8f2f7;
+    outline: 3px solid #33a0cf;
+}
+
+.video-results .video.selected .mat-icon {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: #33a0cf;
+    font-size: 2em;
+    text-shadow: 1px 1px 2px black;
+}
+
+.video-results .thumbnail {
+    width: 120px;
+    height: 90px;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+
+.video-results .thumbnail img {
+    width: 100%;
+}
+
+.video-results .body {
+    width: 70%;
+    margin-left: 125px;
+}
+
+.video-results .title {
+    font-size: 0.8em;
+    font-weight: bolder;
+}
+
+.video-results .channel {
+    font-size: 0.7em;
+    color: #666;
+}
+
+.video-results .nav-button {
+    width: 100%;
+    margin-top: 20px;
+}

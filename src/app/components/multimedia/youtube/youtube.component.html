@@ -1,3 +1,67 @@
-<p>
-  youtube works!
-</p>
+<div class="container-fluid">
+  <div class="alert alert-info">
+    Este módulo permite crear elementos multimedia a partir de un video alojado en
+    <img src="assets/images/YouTube-logo-full_color_light.svg" alt="YouTube" class="youtube-logo">, indique un criterio de búsqueda para buscar.
+  </div>
+  <h3>Paso 1:</h3>
+  <form (ngSubmit)="searchVideo()">
+    <mat-form-field class="full-width">
+      <input type="text" name="searchquery" matInput placeholder="Indica un término de búsqueda, una URL o ID de video" [(ngModel)]="searchQuery">
+    </mat-form-field>
+    <div class="text-right">
+      <button mat-raised-button color="primary">Buscar videos en Youtube</button>
+    </div>
+  </form>
+
+  <div class="video-results" *ngIf="actualData">
+    <h3>Paso 2: <span class="step-subtitle">Selecciona el video que se va a enlazar</span></h3>
+    <div class="row">
+      <div
+        class="video col-lg-6"
+        *ngFor="let v of actualData?.items"
+        (click)="setVideo(v)"
+        [ngClass]="{'selected': v.id.videoId === selectedVideo?.id.videoId}">
+        <mat-icon *ngIf="v.id.videoId === selectedVideo?.id.videoId">check</mat-icon>
+        <div class="thumbnail">
+          <img [src]="v.snippet.thumbnails.default.url" [alt]="v.snippet.title">
+        </div>
+        <div class="body">
+          <div class="title">{{v.snippet.title}}</div>
+          <div class="channel">{{v.snippet.channelTitle}}</div>
+        </div>
+      </div>
+      <div class="col-6">
+        <button mat-raised-button color="primary" class="nav-button" *ngIf="actualData.prevPageToken" (click)="prevPageSearch()">
+          <mat-icon>navigate_before</mat-icon>
+          Anterior
+        </button>
+      </div>
+      <div class="col-6">
+        <button mat-raised-button color="primary" class="nav-button" *ngIf="actualData.nextPageToken" (click)="nextPageSearch()">
+          Siguiente
+          <mat-icon>navigate_next</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-success" *ngIf="ready">
+    El video seleccionado se ha publicado correctamente en la galería multimedia.
+  </div>
+
+  <div class="alert alert-danger" *ngIf="loadError">
+    Ocurrió un error intentando publicar el video en la galería multimedia.
+  </div>
+
+  <div class="extraData" *ngIf="selectedVideo">
+    <h3>Paso 3: <span class="step-subtitle">Indica un nombre para poder identificar el video</span></h3>
+    <form (ngSubmit)="onSubmit()">
+      <mat-form-field class="full-width">
+        <input type="text" name="videoTitle" matInput placeholder="Indica un título para el video" [(ngModel)]="videoTitle">
+      </mat-form-field>
+      <div class="text-right">
+        <button mat-raised-button color="primary" [disabled]="!permiteCargar || videoTitle.length < 3">Añadir a la galería</button>
+      </div>
+    </form>
+  </div>
+</div>

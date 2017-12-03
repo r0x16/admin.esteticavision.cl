@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingDependencesModule } from './app-routing-dependences.module';
 import { AuthGuardService } from '../services/auth-guard.service';
 import { MultimediaService } from '../services/multimedia.service';
+import { YoutubeService } from '../services/youtube.service';
 
 // Componentes utilizados en el Router
 import { AdminComponent } from '../components/admin/admin.component';
@@ -45,7 +46,8 @@ const appRoutes = [{
   ],
   providers: [
     AuthGuardService,
-    MultimediaService
+    MultimediaService,
+    YoutubeService
   ]
 })
 export class AdminRoutingModule { }

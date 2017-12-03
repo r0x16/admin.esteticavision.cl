@@ -71,4 +71,19 @@ export class MultimediaService {
     return this.http.request(req);
   }
 
+  /**
+   * Agrega un video de youtube a la galería multimedia.
+   *
+   * @param name Nombre identificador del video en la galería
+   * @param videoId Identificador del video en youtube
+   * @param thumbnail Enlace a la miniatura del video en youtube
+   */
+  public uploadYoutubeVideo(name: string, videoId: string, thumbnail: string): Promise<any> {
+    return this.http.post(`${environment.apiUrl}/api/media/youtube`, {
+      name: name,
+      src: videoId,
+      thumbnail: thumbnail
+    }).toPromise();
+  }
+
 }
