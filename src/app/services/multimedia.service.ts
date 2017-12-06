@@ -64,7 +64,7 @@ export class MultimediaService {
   private getImageUploadRequest(file: File, extraData: any): Observable<any> {
     const jData = new FormData();
     jData.append('file', file);
-    jData.append('data', extraData);
+    jData.append('name', extraData.name);
     const req = new HttpRequest('POST', `${environment.apiUrl}/api/media/image`, jData, {
       reportProgress: true
     });
