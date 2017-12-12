@@ -16,7 +16,7 @@
 }
 
 .ev-toolbar {
-    background: #303D74;
+    /* background: #303D74; */
     color: white;
     position: relative;
     font-family: 'Noto Sans', sans-serif !important;
@@ -24,11 +24,12 @@
 
 .ev-toolbar::before {
     content: '';
-    background: #303D74;
-    height: 80px;
+    background: url("/assets/images/header-bg.jpg") center;
+    background-size: cover;
+    height: 140px;
     width: 100%;
     z-index: -10;
     position: absolute;
     left: 0;
-    top: 100%;
+    top: 0;
 }
