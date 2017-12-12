@@ -1,0 +1,15 @@
+.setting-box {
+    margin: 10px 0;
+}
+
+.setting-header-info {
+    font-size: 0.8em;
+}
+
+.setting-header-info div:last-child {
+    font-weight: bolder;
+}
+
+.category-submit-buttons {
+    margin-top: 20px;
+}

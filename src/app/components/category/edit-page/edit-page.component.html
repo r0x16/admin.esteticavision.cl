@@ -1,0 +1,17 @@
+<mat-card>
+  <h2>Editar Página de la categoría</h2>
+  <form (ngSubmit)="onSubmit()">
+
+    <div class="active-checkbox">
+      <mat-checkbox name="enabled" [(ngModel)]="enabled">
+        Habilitar la página web personalizada para esta categoría
+      </mat-checkbox>
+    </div>
+
+    <ckeditor [(ngModel)]="body" name="body" [config]="editorConfig" [readonly]="!enabled" debounce="0"></ckeditor>
+
+    <div class="category-submit-buttons text-right">
+      <button mat-raised-button color="primary" [disabled]="lockForm">Guardar</button>
+    </div>
+  </form>
+</mat-card>

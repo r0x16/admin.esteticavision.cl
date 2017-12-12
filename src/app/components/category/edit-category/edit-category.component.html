@@ -1,0 +1,19 @@
+<mat-card>
+  <h2>Editar Categoría {{category.name}}</h2>
+  <form [formGroup]="editForm" (submit)="onSubmit()">
+    <mat-form-field class="full-width-field">
+      <input type="text" matInput placeholder="Nombre" formControlName="name">
+    </mat-form-field>
+    <mat-form-field class="full-width-field">
+      <mat-select placeholder="Categoría Padre" formControlName="father" [disabled]="lockForm">
+        <mat-option [value]="0">--</mat-option>
+        <mat-option *ngFor="let c of fathers" [value]="c.id">
+          {{c.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="category-submit-buttons text-right">
+        <button mat-raised-button color="primary" [disabled]="lockForm">Guardar</button>
+    </div>
+  </form>
+</mat-card>

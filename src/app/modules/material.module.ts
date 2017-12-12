@@ -12,7 +12,10 @@ import {
   MatSidenavModule,
   MatListModule,
   MatTabsModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatDialogModule,
+  MatSelectModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 @NgModule({
@@ -29,7 +32,10 @@ import {
     MatSidenavModule,
     MatListModule,
     MatTabsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatSnackBarModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -44,7 +50,10 @@ import {
     MatSidenavModule,
     MatListModule,
     MatTabsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatSnackBarModule
   ],
   declarations: []
 })

@@ -1,0 +1,80 @@
+<h1>Administración de Categorías</h1>
+<div class="row">
+  <div class="col-12">
+    <mat-card>
+      <div class="row">
+        <div class="col-12 text-right">
+          <button mat-raised-button color="primary" (click)="create()">Nueva Categoría</button>
+        </div>
+
+        <!-- Categorías principales -->
+        <div class="col-lg-4">
+          <mat-nav-list>
+            <mat-list-item
+              *ngFor="let c of supercategories | async"
+              [ngClass]="{'levelActive': c.id == superActive?.id, 'active': c.id == active?.id}"
+              (click)="setSupercategory(c)">
+              <a matLine>{{ c.name }}</a>
+              <button mat-icon-button>
+                <mat-icon>keyboard_arrow_right</mat-icon>
+              </button>
+            </mat-list-item>
+          </mat-nav-list>
+        </div>
+
+        <!-- Subcategorías de primer nivel -->
+        <div class="col-lg-4">
+          <mat-nav-list>
+            <mat-list-item
+              *ngFor="let c of secondLevel | async"
+              [ngClass]="{'levelActive': c.id == secondActive?.id, 'active': c.id == active?.id}"
+              (click)="setSecondCategory(c)">
+              <a matLine>{{ c.name }}</a>
+              <button mat-icon-button>
+                <mat-icon>keyboard_arrow_right</mat-icon>
+              </button>
+            </mat-list-item>
+          </mat-nav-list>
+        </div>
+
+        <!-- Subcategorías de segundo nivel -->
+        <div class="col-lg-4">
+          <mat-nav-list>
+            <mat-list-item
+              *ngFor="let c of thirdLevel | async"
+              [ngClass]="{'levelActive': c.id == thirdActive?.id, 'active': c.id == active?.id}"
+              (click)="setThirdCategory(c)">
+              <a matLine>{{ c.name }}</a>
+            </mat-list-item>
+          </mat-nav-list>
+        </div>
+      </div>
+
+    </mat-card>
+  </div>
+</div>
+<div class="row" *ngIf="active">
+  <div class="col-lg-4">
+    <mat-card>
+      <h2>{{active.name}}</h2>
+      <span class="created_at">Creado el día: {{active.created_at | date:'dd-MM-y'}}</span>
+      <mat-nav-list>
+        <mat-list-item (click)="edit(active)">
+          <mat-icon matListIcon>edit</mat-icon>
+          <span matLine>Editar</span>
+        </mat-list-item>
+        <mat-list-item (click)="webpage(active)">
+          <mat-icon matListIcon>web</mat-icon>
+          <span matLine>Página</span>
+        </mat-list-item>
+        <mat-list-item (click)="settings(active)">
+          <mat-icon matListIcon>settings</mat-icon>
+          <span matLine>Configuración</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-card>
+  </div>
+  <div class="col-lg-8">
+    <ng-template appComponentLoader></ng-template>
+  </div>
+</div>

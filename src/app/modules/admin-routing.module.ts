@@ -4,6 +4,11 @@ import { AppRoutingDependencesModule } from './app-routing-dependences.module';
 import { AuthGuardService } from '../services/auth-guard.service';
 import { MultimediaService } from '../services/multimedia.service';
 import { YoutubeService } from '../services/youtube.service';
+import { CategoryService } from '../services/category.service';
+
+// Directivas
+import { NgDropFilesDirective } from '../directives/ng-drop-files.directive';
+import { ComponentLoaderDirective } from '../directives/component-loader.directive';
 
 // Componentes utilizados en el Router
 import { AdminComponent } from '../components/admin/admin.component';
@@ -13,7 +18,11 @@ import { DashboardComponent } from '../components/dashboard/dashboard.component'
 import { MultimediaComponent } from '../components/multimedia/multimedia.component';
 import { ImagesComponent } from '../components/multimedia/images/images.component';
 import { YoutubeComponent } from '../components/multimedia/youtube/youtube.component';
-import { NgDropFilesDirective } from '../directives/ng-drop-files.directive';
+import { CategoryComponent } from '../components/category/category.component';
+import { CreateCategoryComponent } from '../components/category/create-category/create-category.component';
+import { EditCategoryComponent } from '../components/category/edit-category/edit-category.component';
+import { EditPageComponent } from '../components/category/edit-page/edit-page.component';
+import { EditSettingsComponent } from '../components/category/edit-settings/edit-settings.component';
 
 const appRoutes = [{
   path: 'admin',
@@ -22,7 +31,8 @@ const appRoutes = [{
   children: [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     { path: 'dashboard', component: DashboardComponent },
-    { path: 'media', component: MultimediaComponent }
+    { path: 'media', component: MultimediaComponent },
+    { path: 'categories', component: CategoryComponent }
   ]
 }];
 
@@ -42,12 +52,25 @@ const appRoutes = [{
     MultimediaComponent,
     ImagesComponent,
     YoutubeComponent,
-    NgDropFilesDirective
+    NgDropFilesDirective,
+    CategoryComponent,
+    CreateCategoryComponent,
+    ComponentLoaderDirective,
+    EditCategoryComponent,
+    EditPageComponent,
+    EditSettingsComponent
+  ],
+  entryComponents: [
+    CreateCategoryComponent,
+    EditCategoryComponent,
+    EditPageComponent,
+    EditSettingsComponent
   ],
   providers: [
     AuthGuardService,
     MultimediaService,
-    YoutubeService
+    YoutubeService,
+    CategoryService
   ]
 })
 export class AdminRoutingModule { }

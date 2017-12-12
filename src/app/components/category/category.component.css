@@ -1,0 +1,14 @@
+app-category .mat-list-item.active {
+    background-color: #555 !important;
+    color: #FFF !important;
+}
+
+app-category .mat-list-item.levelActive {
+    background-color: #EEE;
+    color: #777;
+}
+
+app-category .created_at{
+    color: #777;
+    font-size: 0.8em;
+}

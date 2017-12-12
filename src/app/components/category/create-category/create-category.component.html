@@ -1,0 +1,22 @@
+<form (submit)="onSubmit()" [formGroup]="createForm">
+  <h2 mat-dialog-title>Crear Categoría</h2>
+  <mat-dialog-content>
+    <mat-form-field class="full-width-modal">
+      <input type="text" matInput placeholder="Nombre" formControlName="name" [disabled]="lockForm">
+    </mat-form-field>
+
+    <mat-form-field class="full-width-modal">
+      <mat-select placeholder="Categoría Padre" formControlName="father" [disabled]="lockForm">
+        <mat-option [value]="emptyFather">--</mat-option>
+        <mat-option *ngFor="let c of fathers" [value]="c">
+          {{c.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close [disabled]="lockForm">Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="lockForm">Aceptar</button>
+  </mat-dialog-actions>
+</form>

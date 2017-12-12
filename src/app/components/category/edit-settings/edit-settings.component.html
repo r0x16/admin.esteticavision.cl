@@ -1,0 +1,26 @@
+<mat-card>
+    <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+        <h2>Editar la configuración de la categoría</h2>
+        <div class="alert alert-info setting-header-info">
+            <div>Modifique las opciones de visualización de la página de la categoría.</div>
+            <div>Los productos que cumplan con las condiciones que indique a continuación serán mostrados.</div>
+        </div>
+        <div class="product-settings" formGroupName="views">
+            <div class="setting-box">
+                <mat-checkbox formControlName="all">Mostrar todos los productos (Nuevos Primero)</mat-checkbox>
+            </div>
+            <div class="setting-box">
+                <mat-checkbox formControlName="most_viewed">Mostrar los productos más vistos</mat-checkbox>
+            </div>
+            <div class="setting-box">
+                <mat-checkbox formControlName="best_rated">Mostrar los productos con mayor puntuación</mat-checkbox>
+            </div>
+            <div class="setting-box">
+                <mat-checkbox formControlName="subcategories">Mostrar subcateogrías</mat-checkbox>
+            </div>
+        </div>
+        <div class="category-submit-buttons text-right">
+            <button mat-raised-button color="primary" [disabled]="lockForm">Guardar</button>
+        </div>
+    </form>
+</mat-card>
