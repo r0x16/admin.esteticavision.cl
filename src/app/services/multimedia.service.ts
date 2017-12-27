@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEventType, HttpResponse, HttpParams } from '@angular/common/http';
 import { FileItem } from '../models/file-items';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
@@ -84,6 +84,25 @@ export class MultimediaService {
       src: videoId,
       thumbnail: thumbnail
     }).toPromise();
+  }
+
+  /**
+   * Obtiene un listado de elementos multimedia en el servidor paginados.
+   *
+   * @param page La página que se quiere obtener
+   * @param filter Si se debe considerar un filtro para obtener los elementos multimedia
+   */
+  public getMediaObjects(page: number = null, filter: string = ''): Promise<any> {
+    let params = new HttpParams();
+    if (page !== null) {
+      params = params.set('page', page.toString());
+    }
+
+    if (filter !== '') {
+      params = params.set('q', filter);
+    }
+
+    return this.http.get(`${environment.apiUrl}/api/media/chooser/list`, {params}).toPromise();
   }
 
 }
