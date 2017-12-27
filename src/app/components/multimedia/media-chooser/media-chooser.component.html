@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Elige un elemento multimedia</h2>
+<mat-dialog-content>
+  <div *ngIf="selectables;
+   else loadingMedia">
+
+    <div class="mediaList">
+      <div class="row">
+        <div class="col-6 col-lg-2 mediaElement" [ngClass]="{selected: element.id === selected?.id}" *ngFor="let element of selectables.data"
+          (click)="selectMedia(element)">
+          <div class="thumbnail" [ngStyle]="{'background-image': 'url('+element.thumbnail+')'}">
+            <mat-icon class="play_icon" *ngIf="element.type === 'youtube'">play_circle_filled</mat-icon>
+          </div>
+          <div>
+            {{element.name}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <mat-paginator [length]="selectables.meta.total" [pageSize]="12" (page)="setPage($event)"></mat-paginator>
+
+  </div>
+  <ng-template #loadingMedia>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </ng-template>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>Cancelar</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="selected" [disabled]="!selected">Aceptar</button>
+</mat-dialog-actions>
