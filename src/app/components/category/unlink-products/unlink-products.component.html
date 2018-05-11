@@ -1,0 +1,26 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="unlinkForm">
+  <h2>Reasignación de productos</h2>
+  <mat-dialog-content>
+    <div class="alert alert-info setting-header-info">
+      <div>Utilice este formulario si desea reasignar los productos de esta categoría.</div>
+    </div>
+    <div class="alert alert-warning setting-header-info">
+      <div>Atención!: Esto reasignará TODOS los productos que se encuentran asociados a esta categoría</div>
+      <div>Este procedimiento es irreversible</div>
+    </div>
+
+    <mat-form-field class="full-width-modal">
+      <mat-select placeholder="Seleccione la nueva Categoría" formControlName="category">
+        <mat-option [value]="emptyOption">--</mat-option>
+        <mat-option *ngFor="let c of categories" [value]="c">
+          {{c.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close [disabled]="lockForm">Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="lockForm">Aceptar</button>
+  </mat-dialog-actions>
+</form>

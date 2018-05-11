@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoryService } from '../../../services/category.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { UnlinkProductsComponent } from '../unlink-products/unlink-products.component';
 
 @Component({
   selector: 'app-edit-settings',
@@ -17,7 +18,8 @@ export class EditSettingsComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private cs: CategoryService,
-              private snack: MatSnackBar) { }
+              private snack: MatSnackBar,
+              private dialog: MatDialog) { }
 
   async ngOnInit() {
     this.settingsForm = this.fb.group({
@@ -33,17 +35,18 @@ export class EditSettingsComponent implements OnInit {
   }
 
   private async initCategorySettings() {
-    this.actual = await this.cs.getSettings(this.category.id);
-    if (this.actual) {
-      this.settingsForm.setValue({
-        views: {
-          all: this.actual.show_all_products,
-          most_viewed: this.actual.show_most_viewed,
-          best_rated: this.actual.show_best_rated,
-          subcategories: this.actual.show_subcategories
-        }
-      });
-    }
+    // Esta versión no tendrá estas configuraciones habilitadas
+    // this.actual = await this.cs.getSettings(this.category.id);
+    // if (this.actual) {
+    //   this.settingsForm.setValue({
+    //     views: {
+    //       all: this.actual.show_all_products,
+    //       most_viewed: this.actual.show_most_viewed,
+    //       best_rated: this.actual.show_best_rated,
+    //       subcategories: this.actual.show_subcategories
+    //     }
+    //   });
+    // }
   }
 
   public async onSubmit() {
@@ -63,6 +66,12 @@ export class EditSettingsComponent implements OnInit {
     this.lockForm = false;
     this.snack.open('Se han actualizado las configuraciones de la categoría.', 'Cerrar', {
       duration: 3000
+    });
+  }
+
+  public unlinkProducts() {
+    this.dialog.open(UnlinkProductsComponent, {
+      data: this.category
     });
   }
 

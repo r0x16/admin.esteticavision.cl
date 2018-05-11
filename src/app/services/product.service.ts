@@ -63,4 +63,11 @@ export class ProductService {
     }).toPromise();
   }
 
+  public updateCategories(old_category_id: number, new_category_id: number): Promise<any> {
+    return this.http.put(`${environment.apiUrl}/api/product/category`, {
+      old_category_id,
+      new_category_id
+    }).toPromise();
+  }
+
 }

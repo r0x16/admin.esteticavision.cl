@@ -1,5 +1,6 @@
 <mat-card>
-    <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+    <h2>Configuración de la categoría</h2>
+    <!-- <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
         <h2>Editar la configuración de la categoría</h2>
         <div class="alert alert-info setting-header-info">
             <div>Modifique las opciones de visualización de la página de la categoría.</div>
@@ -22,5 +23,16 @@
         <div class="category-submit-buttons text-right">
             <button mat-raised-button color="primary" [disabled]="lockForm">Guardar</button>
         </div>
-    </form>
+    </form> -->
+    <div class="alert alert-danger setting-header-info">
+        Zona de peligro
+        <div class="text-right">
+            <button class="btn btn-danger" (click)="unlinkProducts()">
+                Reasignar Productos
+            </button>
+            <button class="btn btn-danger" (click)="deleteCategory()">
+                Eliminar Categoría
+            </button>
+        </div>
+    </div>
 </mat-card>

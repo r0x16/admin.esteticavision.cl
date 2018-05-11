@@ -37,6 +37,7 @@ import { ProductFeaturesComponent } from '../components/product/product-features
 import { MediaChooserComponent } from '../components/multimedia/media-chooser/media-chooser.component';
 import { CreateDetailComponent } from '../components/product/create-detail/create-detail.component';
 import { CreateFeatureComponent } from '../components/product/create-feature/create-feature.component';
+import { UnlinkProductsComponent } from '../components/category/unlink-products/unlink-products.component';
 
 const appRoutes = [{
   path: 'admin',
@@ -84,6 +85,7 @@ const appRoutes = [{
     MediaChooserComponent,
     CreateDetailComponent,
     CreateFeatureComponent,
+    UnlinkProductsComponent,
     SafePipe
   ],
   entryComponents: [
@@ -96,7 +98,8 @@ const appRoutes = [{
     ShowProductComponent,
     MediaChooserComponent,
     CreateDetailComponent,
-    CreateFeatureComponent
+    CreateFeatureComponent,
+    UnlinkProductsComponent
   ],
   providers: [
     AuthGuardService,
