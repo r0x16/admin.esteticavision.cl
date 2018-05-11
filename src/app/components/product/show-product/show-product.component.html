@@ -1,0 +1,42 @@
+<div *ngIf="product; else loading">
+  <mat-card>
+    <h2>{{ product.data.name }} <span class="product-code">#{{product.data.code}}</span></h2>
+  </mat-card>
+  <div class="row">
+    <div class="col-lg-7">
+      <mat-card>
+        <mat-list>
+          <mat-list-item>
+            <div class="product-subtype">Categoría:</div>
+            {{ product.data.category.name }}
+          </mat-list-item>
+          <mat-list-item>
+            <div class="product-subtype">Etiquetas:</div>
+            <mat-chip-list>
+              <mat-chip *ngFor="let tag of product.data.tags">
+                {{ tag.name }}
+              </mat-chip>
+            </mat-chip-list>
+          </mat-list-item>
+          <mat-list-item *ngIf="product.data.brand">
+              <div class="product-subtype">Marca:</div>
+              {{ product.data.brand.name }}
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+
+      <!-- Detalles tabulados del producto -->
+      <app-product-details [product]="product.data"></app-product-details>
+    </div>
+    <div class="col-lg-5">
+      <!-- Administrador de elementos multimedia -->
+      <app-product-media [product]="product.data"></app-product-media>
+    </div>
+    <div class="col-lg-12">
+      <app-product-features [product]="product.data"></app-product-features>
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>

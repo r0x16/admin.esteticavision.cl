@@ -1,0 +1,19 @@
+<mat-card>
+  <h3>Detalles del producto</h3>
+    <button mat-raised-button color="primary" class="detail-add-button" (click)="newDetail()">
+      <mat-icon>add</mat-icon>
+      Nuevo detalle
+    </button>
+    <mat-table #table [dataSource]="tableData">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Parámetro</mat-header-cell>
+        <mat-cell *matCellDef="let detail">{{ detail.name }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef>Valor</mat-header-cell>
+        <mat-cell *matCellDef="let detail">{{ detail.description }}</mat-cell>
+      </ng-container>
+    </mat-table>
+    <pre>{{details | json}}</pre>
+</mat-card>

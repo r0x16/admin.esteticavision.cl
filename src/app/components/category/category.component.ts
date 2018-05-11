@@ -23,6 +23,7 @@ export class CategoryComponent implements OnInit {
   public active;
   public superActive;
   public secondActive;
+  public is_new;
 
   @ViewChild(ComponentLoaderDirective) editLoader: ComponentLoaderDirective;
 
@@ -33,6 +34,10 @@ export class CategoryComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.loadSupercategories();
+  }
+
+  private loadSupercategories() {
     this.supercategories = this.cs.getFatherless().map(data => {
       for (const item of data) {
         item.subcategories = null;
@@ -43,6 +48,18 @@ export class CategoryComponent implements OnInit {
 
   public create() {
     const createDialog = this.dialog.open(CreateCategoryComponent);
+    createDialog.afterClosed().subscribe(data => {
+      this.is_new = data.id;
+      if (!data.supercategory_id) {
+        this.loadSupercategories();
+      } else {
+        if (this.superActive && this.superActive.id === data.supercategory_id) {
+          this.setSupercategory(this.superActive, true);
+        }else if (this.secondActive && this.secondActive.id === data.supercategory_id) {
+          this.setSecondCategory(this.secondActive, true);
+        }
+      }
+    });
   }
 
   public edit(category) {
@@ -75,15 +92,15 @@ export class CategoryComponent implements OnInit {
     }
   }
 
-  public setSupercategory(category) {
-    this.secondLevel = this.loadChilds(category);
+  public setSupercategory(category, refresh: boolean = false) {
+    this.secondLevel = this.loadChilds(category, refresh);
     this.thirdLevel = this.secondActive = null;
     this.superActive = this.active = category;
     this.clearEditcontainer();
   }
 
-  public setSecondCategory(category) {
-    this.thirdLevel = this.loadChilds(category);
+  public setSecondCategory(category, refresh: boolean = false) {
+    this.thirdLevel = this.loadChilds(category, refresh);
     this.secondActive = this.active = category;
     this.clearEditcontainer();
   }
@@ -93,8 +110,8 @@ export class CategoryComponent implements OnInit {
     this.clearEditcontainer();
   }
 
-  private loadChilds(category): Observable<any> {
-    if (category.subcategories !== null) {
+  private loadChilds(category, refresh: boolean = false): Observable<any> {
+    if (!refresh && category.subcategories !== null) {
       return Observable.of(category.subcategories);
     }
 

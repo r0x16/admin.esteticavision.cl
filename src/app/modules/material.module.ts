@@ -15,7 +15,11 @@ import {
   MatProgressBarModule,
   MatDialogModule,
   MatSelectModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatChipsModule,
+  MatPaginatorModule,
+  MatTableModule,
+  MatExpansionModule
 } from '@angular/material';
 
 @NgModule({
@@ -35,7 +39,11 @@ import {
     MatProgressBarModule,
     MatDialogModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatChipsModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatExpansionModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -53,7 +61,11 @@ import {
     MatProgressBarModule,
     MatDialogModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatChipsModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatExpansionModule
   ],
   declarations: []
 })

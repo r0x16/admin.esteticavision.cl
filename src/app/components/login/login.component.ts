@@ -27,14 +27,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginform = new FormGroup({
-      email: new FormControl('esteticavision.cl@gmail.com', [
+      email: new FormControl('', [
         Validators.email,
         Validators.required
       ]),
-      password: new FormControl('meveoyveobien', [
+      password: new FormControl('', [
         Validators.required
       ]),
-      remember: new FormControl(true)
+      remember: new FormControl(false)
     });
     this.loginform.valueChanges.subscribe(() => this.invalidAnimate = false );
   }

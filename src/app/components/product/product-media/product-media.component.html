@@ -1,0 +1,15 @@
+<mat-card class="media-elements">
+  <h3>Elementos multimedia</h3>
+  <div class="row">
+    <div class="col-4 text-center" *ngFor="let media of medias.data">
+      <div class="mediaElement" [ngStyle]="{'background-image': 'url('+media.thumbnail+')'}">
+        <mat-icon class="video-icon" *ngIf="media.type === 'youtube'">play_circle_filled</mat-icon>
+      </div>
+    </div>
+    <div class="col-4 text-center">
+      <div class="mediaAdder" (click)="pickMedia()">
+        <mat-icon>add</mat-icon>
+      </div>
+    </div>
+  </div>
+</mat-card>

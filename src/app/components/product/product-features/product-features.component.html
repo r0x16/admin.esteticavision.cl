@@ -1,0 +1,27 @@
+<mat-card>
+  <div class="row">
+    <div class="col-lg-8">
+      <h3>Paneles de característica</h3>
+    </div>
+    <div class="col-lg-4">
+      <button mat-raised-button color="primary" class="feature-add-button" (click)="newFeature()">
+        <mat-icon>add</mat-icon>
+        Nuevo Panel
+      </button>
+    </div>
+  </div>
+
+  <div class="features-list" *ngIf="features.length > 0">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let f of features">
+        <mat-expansion-panel-header>
+          <span class="panel-title">
+            {{f.title}}
+          </span>
+        </mat-expansion-panel-header>
+        <div [innerHTML]="f.description | safe: 'html'"></div>
+        <div class="clear-panel"></div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</mat-card>

@@ -1,0 +1,31 @@
+.media-elements .mediaElement, .media-elements .mediaAdder {
+    height: 80px;
+    margin-bottom: 8px;
+}
+
+.media-elements .mediaElement {
+    background-size: cover;
+    background-position: center;
+}
+
+.media-elements .mediaElement .video-icon {
+    width: 40px;
+    font-size: 40px;
+    margin-top: 20px;
+    color: white;
+    text-shadow: 2px 2px 10px black;
+    opacity: 0.6;
+}
+
+.media-elements .mediaAdder {
+    border: 3px dashed #BBB;
+    background-color: #EEE;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.media-elements .mediaAdder .mat-icon {
+    width: 40px;
+    font-size: 40px;
+    color: #BBB;
+}

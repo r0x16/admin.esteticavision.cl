@@ -1,0 +1,24 @@
+.product-item {
+    background-color: #EEE;
+    border: 1px solid #CCC;
+    width: 100%;
+    padding: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.product-item:hover {
+    background-color: #DDD;
+}
+
+.product-name {
+    font-weight: bolder;
+}
+
+.product-code, .product-category {
+    font-size: 0.75em;
+}
+
+.product-category {
+    color: #666;
+}

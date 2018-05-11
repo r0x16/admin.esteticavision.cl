@@ -12,7 +12,7 @@
           <mat-nav-list>
             <mat-list-item
               *ngFor="let c of supercategories | async"
-              [ngClass]="{'levelActive': c.id == superActive?.id, 'active': c.id == active?.id}"
+              [ngClass]="{'levelActive': c.id == superActive?.id, 'active': c.id == active?.id, 'new': c.id == is_new}"
               (click)="setSupercategory(c)">
               <a matLine>{{ c.name }}</a>
               <button mat-icon-button>
@@ -27,7 +27,7 @@
           <mat-nav-list>
             <mat-list-item
               *ngFor="let c of secondLevel | async"
-              [ngClass]="{'levelActive': c.id == secondActive?.id, 'active': c.id == active?.id}"
+              [ngClass]="{'levelActive': c.id == secondActive?.id, 'active': c.id == active?.id, 'new': c.id == is_new}"
               (click)="setSecondCategory(c)">
               <a matLine>{{ c.name }}</a>
               <button mat-icon-button>
@@ -42,7 +42,7 @@
           <mat-nav-list>
             <mat-list-item
               *ngFor="let c of thirdLevel | async"
-              [ngClass]="{'levelActive': c.id == thirdActive?.id, 'active': c.id == active?.id}"
+              [ngClass]="{'levelActive': c.id == thirdActive?.id, 'active': c.id == active?.id, 'new': c.id == is_new}"
               (click)="setThirdCategory(c)">
               <a matLine>{{ c.name }}</a>
             </mat-list-item>

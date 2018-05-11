@@ -1,0 +1,25 @@
+<h1>Productos</h1>
+<mat-card>
+  <div class="text-right">
+    <button mat-raised-button color="primary" (click)="create()">Nuevo Producto</button>
+  </div>
+  <div *ngIf="products">
+    <div class="row">
+      <div *ngFor="let product of products.data" class="col-lg-4">
+        <div class="product-item" (click)="show(product)">
+          <div class="product-name">
+            {{ product.name }}
+          </div>
+          <div class="product-code">
+            código: {{ product.code }}
+          </div>
+          <div class="product-category">
+            {{ product.category.name }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-paginator [length]="products.meta.total" [pageSize]="9" (page)="setPage($event)"></mat-paginator>
+  </div>
+</mat-card>
+<ng-template appComponentLoader></ng-template>

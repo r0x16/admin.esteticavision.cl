@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../../services/category.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-create-category',
@@ -17,7 +18,8 @@ export class CreateCategoryComponent implements OnInit {
   public lockForm = false;
 
   constructor(private cs: CategoryService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<CreateCategoryComponent>) { }
 
   ngOnInit() {
     this.fathersPopulate();
@@ -53,6 +55,7 @@ export class CreateCategoryComponent implements OnInit {
     });
 
     this.lockForm = false;
+    this.dialogRef.close(result);
   }
 
 }

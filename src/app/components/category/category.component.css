@@ -12,3 +12,15 @@ app-category .created_at{
     color: #777;
     font-size: 0.8em;
 }
+app-category .mat-list-item.new {
+    animation: appCategoryNewItem 4s;
+}
+
+@keyframes appCategoryNewItem {
+    0%, 30%{
+        background-color: rgb(53, 238, 130);
+    }
+    100%{
+        background-color: #fff;
+    }
+}

@@ -12,6 +12,10 @@ export class CategoryService {
     return this.http.get(`${environment.apiUrl}/api/categories`);
   }
 
+  public getAllCategories(): Promise<any> {
+    return this.http.get(`${environment.apiUrl}/api/categories`).toPromise();
+  }
+
   public storeCategory(data: any): Promise<any> {
     return this.http.post(`${environment.apiUrl}/api/categories`, data).toPromise();
   }
