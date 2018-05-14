@@ -136,7 +136,7 @@ export class CategoryComponent implements OnInit {
 
   private destroyCategory(category: any) {
     switch (category.id) {
-      case this.superActive.id: this.loadSupercategories(); break;
+      case this.superActive.id: this.loadSupercategories(); this.superActive = this.active = null; break;
       case this.secondActive.id: this.setSupercategory(this.superActive, true); break;
       default: this.setSecondCategory(this.secondActive, true); break;
     }
