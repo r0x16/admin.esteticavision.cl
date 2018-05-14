@@ -24,6 +24,14 @@ export class CategoryService {
     return this.http.put(`${environment.apiUrl}/api/categories/${id}`, data).toPromise();
   }
 
+  public destroyCategory(id: number): Promise<any> {
+    return this.http.delete(`${environment.apiUrl}/api/categories/${id}`).toPromise();
+  }
+
+  public getRemovableSettings(id): Promise<any> {
+    return this.http.get(`${environment.apiUrl}/api/categories/${id}/removable`).toPromise();
+  }
+
   public getFatherless(): Observable<any> {
     const params = new HttpParams()
       .set('fatherless', 'true');
@@ -48,7 +56,7 @@ export class CategoryService {
     return this.http.put(`${environment.apiUrl}/api/categories/${category_id}/webpage`, data).toPromise();
   }
 
-  public getSettings(category_id: number): Promise<any>{
+  public getSettings(category_id: number): Promise<any> {
     return this.http.get(`${environment.apiUrl}/api/categories/${category_id}/settings`).toPromise();
   }
 

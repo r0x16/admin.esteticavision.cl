@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoryService } from '../../../services/category.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { UnlinkProductsComponent } from '../unlink-products/unlink-products.component';
+import { DeleteCategoryComponent } from '../delete-category/delete-category.component';
+import { CategoryComponent } from '../category.component';
 
 @Component({
   selector: 'app-edit-settings',
@@ -12,6 +14,7 @@ import { UnlinkProductsComponent } from '../unlink-products/unlink-products.comp
 export class EditSettingsComponent implements OnInit {
 
   @Input() category: any;
+  public onDelete: EventEmitter<any> = new EventEmitter();
   public settingsForm: FormGroup;
   public lockForm = false;
   private actual: any;
@@ -72,6 +75,15 @@ export class EditSettingsComponent implements OnInit {
   public unlinkProducts() {
     this.dialog.open(UnlinkProductsComponent, {
       data: this.category
+    });
+  }
+
+  public deleteCategory() {
+    const dialog = this.dialog.open(DeleteCategoryComponent, {
+      data: this.category
+    });
+    dialog.afterClosed().subscribe(() => {
+      this.onDelete.emit(this.category);
     });
   }
 

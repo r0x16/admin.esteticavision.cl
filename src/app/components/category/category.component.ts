@@ -24,6 +24,7 @@ export class CategoryComponent implements OnInit {
   public superActive;
   public secondActive;
   public is_new;
+  private needReload;
 
   @ViewChild(ComponentLoaderDirective) editLoader: ComponentLoaderDirective;
 
@@ -57,6 +58,8 @@ export class CategoryComponent implements OnInit {
           this.setSupercategory(this.superActive, true);
         }else if (this.secondActive && this.secondActive.id === data.supercategory_id) {
           this.setSecondCategory(this.secondActive, true);
+        } else {
+          this.needReload = data.supercategory_id;
         }
       }
     });
@@ -75,6 +78,9 @@ export class CategoryComponent implements OnInit {
   public settings(category) {
     const component = this.loadEditorComponent(EditSettingsComponent);
     (<EditSettingsComponent>component.instance).category = category;
+    (<EditSettingsComponent>component.instance).onDelete.subscribe(result => {
+      this.destroyCategory(result);
+    });
   }
 
   private loadEditorComponent(component): ComponentRef<any> {
@@ -111,8 +117,12 @@ export class CategoryComponent implements OnInit {
   }
 
   private loadChilds(category, refresh: boolean = false): Observable<any> {
-    if (!refresh && category.subcategories !== null) {
+    if (!refresh && category.subcategories !== null && category.id !== this.needReload) {
       return Observable.of(category.subcategories);
+    }
+
+    if (this.needReload === category.id) {
+      this.needReload = null;
     }
 
     return this.cs.getChilds(category.id).map(data => {
@@ -122,6 +132,14 @@ export class CategoryComponent implements OnInit {
       category.subcategories = data;
       return data;
     });
+  }
+
+  private destroyCategory(category: any) {
+    switch (category.id) {
+      case this.superActive.id: this.loadSupercategories(); break;
+      case this.secondActive.id: this.setSupercategory(this.superActive, true); break;
+      default: this.setSecondCategory(this.secondActive, true); break;
+    }
   }
 
 }
