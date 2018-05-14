@@ -6,6 +6,7 @@ import { MultimediaService } from '../services/multimedia.service';
 import { YoutubeService } from '../services/youtube.service';
 import { CategoryService } from '../services/category.service';
 import { ProductService } from '../services/product.service';
+import { BrandService } from '../services/brand.service';
 
 // Directivas
 import { NgDropFilesDirective } from '../directives/ng-drop-files.directive';
@@ -109,7 +110,8 @@ const appRoutes = [{
     MultimediaService,
     YoutubeService,
     CategoryService,
-    ProductService
+    ProductService,
+    BrandService
   ]
 })
 export class AdminRoutingModule { }
