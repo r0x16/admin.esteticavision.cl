@@ -62,8 +62,6 @@ export class NgDropFilesDirective {
         this.fileDrop.emit(nuevoArchivo);
       }
     }
-
-    console.log(this.archivos);
   }
 
   private _prevenirYDetener(event: any) {
@@ -84,7 +82,6 @@ export class NgDropFilesDirective {
     for (const i in this.archivos) {
       const arch = this.archivos[i];
       if (arch.archivo.name === nombreArchivo) {
-        console.log('Archivo ya existe en la lista', nombreArchivo);
         return true;
       }
     }

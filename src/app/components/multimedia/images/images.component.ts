@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormArray, FormBuilder, Validators } from '@ang
 import { MultimediaService } from '../../../services/multimedia.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-media-images',
@@ -21,7 +22,8 @@ export class ImagesComponent implements OnInit {
   permiteCargar = true;
 
   constructor(private fb: FormBuilder,
-              private ms: MultimediaService) { }
+              private ms: MultimediaService,
+              private santi: DomSanitizer) { }
 
   ngOnInit() {
     this.imagesForm = this.fb.group({
@@ -78,6 +80,47 @@ export class ImagesComponent implements OnInit {
     for (let i = 0; i < length; i++) {
       this.mediaDeleteImage(0);
     }
+  }
+
+  public getInputFiles(event) {
+    this._agregarArchivos(event.target.files);
+  }
+
+  private _agregarArchivos(archivosLista: FileList) {
+    // tslint:disable-next-line:forin
+    for (const propiedad in Object.getOwnPropertyNames(archivosLista)) {
+      const archTemporal = archivosLista[propiedad];
+      if (this.canToBeLoaded(archTemporal)) {
+        const nuevoArchivo = new FileItem(archTemporal);
+        nuevoArchivo.setUrl(this.santi.bypassSecurityTrustUrl(window.URL.createObjectURL(archTemporal)));
+        this.files.push(nuevoArchivo);
+        this.fileDropped(nuevoArchivo);
+      }
+    }
+  }
+
+  private canToBeLoaded(file: File) {
+    if (!this.fileInList(file.name) && this.isImage(file.type)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  private fileInList(filename: string) {
+    // tslint:disable-next-line:forin
+    for (const i in this.files) {
+      const arch = this.files[i];
+      if (arch.archivo.name === filename) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  private isImage(filetype: string) {
+    return (filetype === '' || filetype === undefined) ? false : filetype.startsWith('image');
   }
 
 }
