@@ -8,5 +8,5 @@ export const environment = {
   apiUrl: 'http://192.168.213.86',
   apiClientId: 2,
   apiClientSecret: 'ujGtdNMSsYK08IDwqF4wYWuJ8gr2Ifsf8dtqESRm',
-  youtubeApiKey: 'AIzaSyCzwYrwVn_xPDW7v3y-nbtttuQn2u18aic'
+  youtubeApiKey: 'AIzaSyCsHdpvVahTAT_Hx0yu6DD39cXDTZgpGuA'
 };
