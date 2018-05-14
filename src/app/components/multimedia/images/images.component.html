@@ -11,7 +11,7 @@
           <div>Arrastra los archivos acá</div>
           <div>o</div>
           <input type="file" name="files[]" id="media-images-files" #mediaImagesFiles multiple (change)="getInputFiles($event)">
-          <button mat-raised-button color="primary" (click)="openFileDialog()">
+          <button type="button" mat-raised-button color="primary" (click)="openFileDialog()">
             Haz clic para seleccionar los archivos
           </button>
         </div>
