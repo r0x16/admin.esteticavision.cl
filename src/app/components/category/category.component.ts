@@ -68,6 +68,9 @@ export class CategoryComponent implements OnInit {
   public edit(category) {
     const component = this.loadEditorComponent(EditCategoryComponent);
     (<EditCategoryComponent>component.instance).category = category;
+    (<EditCategoryComponent>component.instance).onEdit.subscribe(result => {
+      this.editCategory(result);
+    });
   }
 
   public webpage(category) {
@@ -135,11 +138,19 @@ export class CategoryComponent implements OnInit {
   }
 
   private destroyCategory(category: any) {
+    if (!category) {
+      return;
+    }
     switch (category.id) {
       case this.superActive.id: this.loadSupercategories(); this.superActive = this.active = null; break;
       case this.secondActive.id: this.setSupercategory(this.superActive, true); break;
       default: this.setSecondCategory(this.secondActive, true); break;
     }
+  }
+
+  private editCategory(category: any) {
+    this.destroyCategory(category);
+    this.active = category;
   }
 
 }

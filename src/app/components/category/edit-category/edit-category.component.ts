@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoryService } from '../../../services/category.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-edit-category',
@@ -13,10 +14,12 @@ export class EditCategoryComponent implements OnInit {
   public editForm: FormGroup;
   public fathers = [];
   public lockForm = false;
+  public onEdit: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private fb: FormBuilder,
-    private cs: CategoryService
+    private cs: CategoryService,
+    private snack: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -41,8 +44,13 @@ export class EditCategoryComponent implements OnInit {
       return;
     }
     this.lockForm = true;
+    this.editForm.disable();
     const result = await this.cs.updateCategory(this.editForm.value, this.category.id);
     this.lockForm = false;
+    this.snack.open('Categoría modificada correctamente', 'Cerrar', {
+      duration: 3000
+    });
+    this.onEdit.emit(result);
   }
 
 }
