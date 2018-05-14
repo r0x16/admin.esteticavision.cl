@@ -11,7 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CreateDetailComponent implements OnInit {
 
   public formData: FormGroup;
-  public lockform = false;
+  public lockForm = false;
 
   constructor(public dialogRef: MatDialogRef<CreateDetailComponent>,
               @Inject(MAT_DIALOG_DATA) public product: any,
@@ -30,6 +30,7 @@ export class CreateDetailComponent implements OnInit {
   }
 
   public async onSubmit() {
+    this.lockForm = true;
     const data = this.formData.value;
     const detail = await this.ps.storeProductDetail(this.product.id, data.name, data.description);
     this.dialogRef.close(detail);

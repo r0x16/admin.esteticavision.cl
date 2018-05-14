@@ -14,6 +14,7 @@ export class UnlinkProductsComponent implements OnInit {
   public unlinkForm: FormGroup;
   public lockForm = false;
   public categories;
+  public emptyOption = {id: 0};
 
   constructor(private cs: CategoryService,
               private ps: ProductService,
