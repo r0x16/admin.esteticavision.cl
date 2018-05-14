@@ -19,12 +19,22 @@ export class ProductComponent implements OnInit {
               private ps: ProductService,
               private factory: ComponentFactoryResolver) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.loadProducts();
+  }
+
+  private async loadProducts() {
     this.products = await this.ps.getProducts();
   }
 
   public create() {
     const createDialog = this.dialog.open(CreateProductComponent);
+    createDialog.afterClosed().subscribe(product => {
+      if (product) {
+        this.loadProducts();
+        this.show(product);
+      }
+    });
   }
 
   public show(product: any) {

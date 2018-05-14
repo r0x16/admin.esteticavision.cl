@@ -29,7 +29,7 @@
         </mat-form-field>
       </div>
       <div class="col-2 text-left">
-        <button mat-mini-fab color="primary" (click)="addCategory()">
+        <button type="button" mat-mini-fab color="primary" (click)="addCategory()">
           <mat-icon>add</mat-icon>
         </button>
       </div>
@@ -43,11 +43,14 @@
           <mat-form-field class="full-width-modal">
             <mat-select placeholder="Marca" formControlName="brand">
               <mat-option [value]="emptyOption">--</mat-option>
+              <mat-option *ngFor="let b of brands" [value]="b">
+                {{b.name}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <div class="col-2">
-          <button mat-mini-fab color="primary" (click)="addBrand()">
+          <button type="button" mat-mini-fab color="primary" (click)="addBrand()">
             <mat-icon>add</mat-icon>
           </button>
         </div>

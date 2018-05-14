@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoryService } from '../../../services/category.service';
 import { ProductService } from '../../../services/product.service';
-import { MatDialog, MatChipInputEvent } from '@angular/material';
+import { MatDialog, MatChipInputEvent, MatDialogRef, MatSnackBar } from '@angular/material';
 import { CreateCategoryComponent } from '../../category/create-category/create-category.component';
 import { CreateBrandComponent } from '../create-brand/create-brand.component';
 import { FormArray } from '@angular/forms/src/model';
+import { BrandService } from '../../../services/brand.service';
 
 @Component({
   selector: 'app-create-product',
@@ -17,15 +18,20 @@ export class CreateProductComponent implements OnInit {
   public createForm: FormGroup;
   public emptyOption = {id: 0};
   public categories;
+  public brands;
   public lockForm = false;
 
   constructor(private fb: FormBuilder,
               private cs: CategoryService,
               private ps: ProductService,
-              private dialog: MatDialog) { }
+              private bs: BrandService,
+              private dialog: MatDialog,
+              private dialogRef: MatDialogRef<CreateProductComponent>,
+              private snack: MatSnackBar) { }
 
   ngOnInit() {
     this.populateCategory();
+    this.populateBrand();
     this.formInit();
   }
 
@@ -66,12 +72,26 @@ export class CreateProductComponent implements OnInit {
     this.categories = await this.cs.getAllCategories();
   }
 
+  private async populateBrand() {
+    this.brands = await this.bs.getAllBrands();
+  }
+
   public addCategory() {
-    this.dialog.open(CreateCategoryComponent);
+    this.dialog.open(CreateCategoryComponent).afterClosed().subscribe(category => {
+      if (category) {
+        this.categories.push(category);
+        this.createForm.get('category').setValue(category);
+      }
+    });
   }
 
   public addBrand() {
-    this.dialog.open(CreateBrandComponent);
+    this.dialog.open(CreateBrandComponent).afterClosed().subscribe(brand => {
+      if (brand) {
+        this.brands.push(brand);
+        this.createForm.get('brand').setValue(brand);
+      }
+    });
   }
 
   public async onSubmit() {
@@ -93,6 +113,11 @@ export class CreateProductComponent implements OnInit {
 
     this.createForm.enable();
     this.lockForm = false;
+
+    this.snack.open('Producto creado correctamente', 'Cerrar', {
+      duration: 3000
+    });
+    this.dialogRef.close(result);
   }
 
 }
