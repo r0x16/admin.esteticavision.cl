@@ -3,6 +3,8 @@
   <div *ngIf="selectables;
    else loadingMedia">
 
+    <input [(ngModel)]="query" (keyup)="onSearch()" type="text" name="q" id="q_image" class="form-control" placeholder="Buscar elemento multimedia">
+    
     <div class="mediaList">
       <div class="row">
         <div class="col-6 col-lg-2 mediaElement" [ngClass]="{selected: element.id === selected?.id}" *ngFor="let element of selectables.data"

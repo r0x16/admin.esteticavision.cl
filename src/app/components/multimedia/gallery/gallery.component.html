@@ -1,0 +1,28 @@
+<br>
+<input [(ngModel)]="query" (keyup)="onSearch()" type="text" name="media_query" id="media_query" class="form-control"
+  placeholder="Buscar Elementos multimedia">
+
+<div *ngIf="items;
+   else loadingMedia">
+
+  <div class="mediaList">
+    <div class="row">
+      <div class="col-6 col-lg-2 mediaElement" *ngFor="let element of items.data">
+        <div class="thumbnail" [ngStyle]="{'background-image': 'url('+element.thumbnail+')'}">
+          <mat-icon class="play_icon" *ngIf="element.type === 'youtube'">play_circle_filled</mat-icon>
+          <mat-icon class="delete_media" (click)="deleteMedia(element)">delete</mat-icon>
+        </div>
+        <div>
+          {{element.name}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <mat-paginator [length]="items.meta.total" [pageSize]="12" (page)="setPage($event)"></mat-paginator>
+
+</div>
+
+<ng-template #loadingMedia>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>

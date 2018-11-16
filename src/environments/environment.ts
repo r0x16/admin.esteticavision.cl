@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://192.168.213.86',
+  apiUrl: 'http://localhost:88',
   apiClientId: 2,
   apiClientSecret: 'ujGtdNMSsYK08IDwqF4wYWuJ8gr2Ifsf8dtqESRm',
   youtubeApiKey: 'AIzaSyCsHdpvVahTAT_Hx0yu6DD39cXDTZgpGuA'

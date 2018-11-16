@@ -8,3 +8,9 @@
     margin-right: 10px;
     color: #666;
 }
+
+.edit-product-button {
+    font-size: 0.5em;
+    float: right;
+    color: #555;
+}

@@ -1,0 +1,13 @@
+<form (submit)="onSubmit()" [formGroup]="createForm">
+  <h2 mat-dialog-title>Crear Etiqueta</h2>
+  <mat-dialog-content>
+    <mat-form-field class="full-width-modal">
+      <input type="text" matInput placeholder="Nombre" formControlName="name">
+    </mat-form-field>
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close [disabled]="lockForm">Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="lockForm">Aceptar</button>
+  </mat-dialog-actions>
+</form>

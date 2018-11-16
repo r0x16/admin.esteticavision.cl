@@ -1,0 +1,67 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="editForm">
+    <h2 mat-dialog-title>Editar Producto {{product.name}}</h2>
+    <mat-dialog-content>
+      <mat-form-field class="full-width-modal">
+        <input type="text" matInput placeholder="Nombre" formControlName="name">
+      </mat-form-field>
+  
+      <mat-form-field class="full-width-modal">
+        <input type="text" matInput placeholder="Código" formControlName="code">
+      </mat-form-field>
+  
+      <mat-form-field class="full-width-modal">
+        <textarea
+          formControlName="description"
+          matInput
+          matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"
+          placeholder="Descripción"></textarea>
+      </mat-form-field>
+  
+      <div class="row">
+        <div class="col-10">
+          <mat-form-field class="full-width-modal">
+            <mat-select placeholder="Categoría" formControlName="category" [compareWith]="compareIds">
+              <mat-option [value]="emptyOption">--</mat-option>
+              <mat-option *ngFor="let c of categories" [value]="c">
+                {{c.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-2 text-left">
+          <button type="button" mat-mini-fab color="primary" (click)="addCategory()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+  
+      <mat-checkbox formControlName="extras">Información adicional</mat-checkbox>
+  
+      <div *ngIf="editForm.value.extras">
+        <div class="row">
+          <div class="col-10">
+            <mat-form-field class="full-width-modal">
+              <mat-select placeholder="Marca" formControlName="brand" [compareWith]="compareIds">
+                <mat-option [value]="emptyOption">--</mat-option>
+                <mat-option *ngFor="let b of brands" [value]="b">
+                  {{b.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-2">
+            <button type="button" mat-mini-fab color="primary" (click)="addBrand()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+    
+    <mat-dialog-actions>
+      <button mat-raised-button mat-dialog-close [disabled]="lockForm">Cancelar</button>
+      <button mat-raised-button color="primary" [disabled]="lockForm">Aceptar</button>
+    </mat-dialog-actions>
+  
+  
+  </form>

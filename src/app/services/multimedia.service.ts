@@ -105,4 +105,8 @@ export class MultimediaService {
     return this.http.get(`${environment.apiUrl}/api/media/chooser/list`, {params}).toPromise();
   }
 
+  public deleteMediaObject(id: number): Promise<any> {
+    return this.http.delete(`${environment.apiUrl}/api/media/${id}`).toPromise();
+  }
+
 }

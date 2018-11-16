@@ -1,3 +1,7 @@
 .detail-add-button {
     width: 100%;
 }
+
+.detail-edit-button {
+    min-width: 0;
+}

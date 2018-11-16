@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { MatDialog, MatTableDataSource } from '@angular/material';
 import { CreateDetailComponent } from '../create-detail/create-detail.component';
+import { EditDetailComponent } from '../edit-detail/edit-detail.component';
+import { DeleteDetailComponent } from '../delete-detail/delete-detail.component';
 
 @Component({
   selector: 'app-product-details',
@@ -28,11 +30,38 @@ export class ProductDetailsComponent implements OnInit {
       data: this.product
     });
     dialogRef.afterClosed().subscribe(detail => {
-      console.log(detail);
       if (detail) {
         this.details.push(detail);
         this.tableData.data = this.details;
       }
+    });
+  }
+
+  public editDetail(detail_id: number) {
+    const dialogRef = this.dialog.open(EditDetailComponent, {
+      data: detail_id
+    });
+    dialogRef.afterClosed().subscribe(detail => {
+      this.details.forEach((value, index) => {
+        if (value.id === detail.id) {
+          value.name = detail.name;
+          value.description = detail.description;
+        }
+      });
+    });
+  }
+
+  public deleteDetail(detail_id: number) {
+    const dialogRef = this.dialog.open(DeleteDetailComponent, {
+      data: detail_id
+    });
+    dialogRef.afterClosed().subscribe(detail => {
+      this.details.forEach((value, index, object) => {
+        if (value.id === detail.id) {
+          this.details.splice(index, 1);
+          this.tableData.data = this.details;
+        }
+      });
     });
   }
 

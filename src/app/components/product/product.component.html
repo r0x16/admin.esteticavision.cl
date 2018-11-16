@@ -1,7 +1,14 @@
 <h1>Productos</h1>
 <mat-card>
-  <div class="text-right">
-    <button mat-raised-button color="primary" (click)="create()">Nuevo Producto</button>
+  <div class="row">
+    <div class="col-md-10">
+      <input [(ngModel)]="query" (keyup)="onSearch()" type="text" name="query_productos" id="query_productos" class="form-control" placeholder="Buscar Productos">
+    </div>
+    <div class="col-md-2">
+      <div class="text-right">
+        <button mat-raised-button color="primary" (click)="create()">Nuevo Producto</button>
+      </div>
+    </div>
   </div>
   <div *ngIf="products">
     <div class="row">

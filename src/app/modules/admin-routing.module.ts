@@ -40,6 +40,14 @@ import { CreateDetailComponent } from '../components/product/create-detail/creat
 import { CreateFeatureComponent } from '../components/product/create-feature/create-feature.component';
 import { UnlinkProductsComponent } from '../components/category/unlink-products/unlink-products.component';
 import { DeleteCategoryComponent } from '../components/category/delete-category/delete-category.component';
+import { EditDetailComponent } from '../components/product/edit-detail/edit-detail.component';
+import { DeleteDetailComponent } from '../components/product/delete-detail/delete-detail.component';
+import { CreateTagComponent } from '../components/product/create-tag/create-tag.component';
+import { EditProductComponent } from '../components/product/edit-product/edit-product.component';
+import { ProductDangerComponent } from '../components/product/product-danger/product-danger.component';
+import { DeleteProductComponent } from '../components/product/delete-product/delete-product.component';
+import { GalleryComponent } from '../components/multimedia/gallery/gallery.component';
+import { DeleteMediaComponent } from '../components/multimedia/delete-media/delete-media.component';
 
 const appRoutes = [{
   path: 'admin',
@@ -89,7 +97,15 @@ const appRoutes = [{
     CreateFeatureComponent,
     UnlinkProductsComponent,
     SafePipe,
-    DeleteCategoryComponent
+    DeleteCategoryComponent,
+    EditDetailComponent,
+    DeleteDetailComponent,
+    CreateTagComponent,
+    EditProductComponent,
+    ProductDangerComponent,
+    DeleteProductComponent,
+    GalleryComponent,
+    DeleteMediaComponent
   ],
   entryComponents: [
     CreateCategoryComponent,
@@ -103,7 +119,13 @@ const appRoutes = [{
     CreateDetailComponent,
     CreateFeatureComponent,
     UnlinkProductsComponent,
-    DeleteCategoryComponent
+    DeleteCategoryComponent,
+    EditDetailComponent,
+    DeleteDetailComponent,
+    CreateTagComponent,
+    EditProductComponent,
+    DeleteProductComponent,
+    DeleteMediaComponent
   ],
   providers: [
     AuthGuardService,

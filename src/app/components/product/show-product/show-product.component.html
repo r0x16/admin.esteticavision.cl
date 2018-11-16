@@ -1,6 +1,10 @@
 <div *ngIf="product; else loading">
   <mat-card>
-    <h2>{{ product.data.name }} <span class="product-code">#{{product.data.code}}</span></h2>
+    <h2>
+      <button mat-button class="edit-product-button" (click)="editProduct()"><mat-icon>edit</mat-icon></button>
+      {{ product.data.name }}
+      <span class="product-code">#{{product.data.code}}</span>
+    </h2>
   </mat-card>
   <div class="row">
     <div class="col-lg-7">
@@ -10,17 +14,19 @@
             <div class="product-subtype">Categoría:</div>
             {{ product.data.category.name }}
           </mat-list-item>
+          <mat-list-item *ngIf="product.data.brand">
+            <div class="product-subtype">Marca:</div>
+            {{ product.data.brand.name }}
+          </mat-list-item>
           <mat-list-item>
             <div class="product-subtype">Etiquetas:</div>
             <mat-chip-list>
-              <mat-chip *ngFor="let tag of product.data.tags">
+              <mat-chip *ngFor="let tag of product.data.tags" [removable]="true" (remove)="removeTag(tag)">
                 {{ tag.name }}
+                <mat-icon matChipRemove>cancel</mat-icon>
               </mat-chip>
             </mat-chip-list>
-          </mat-list-item>
-          <mat-list-item *ngIf="product.data.brand">
-              <div class="product-subtype">Marca:</div>
-              {{ product.data.brand.name }}
+            <button mat-button (click)="newTag()"><mat-icon>add</mat-icon></button>
           </mat-list-item>
         </mat-list>
       </mat-card>
@@ -34,6 +40,9 @@
     </div>
     <div class="col-lg-12">
       <app-product-features [product]="product.data"></app-product-features>
+    </div>
+    <div class="col-lg-12">
+      <app-product-danger [product]="product.data" [deleted]="onDelete"></app-product-danger>
     </div>
   </div>
 </div>

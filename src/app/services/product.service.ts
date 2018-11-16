@@ -29,6 +29,34 @@ export class ProductService {
     return this.http.post(`${environment.apiUrl}/api/products`, data).toPromise();
   }
 
+  public updateProduct(product_id: number, data: any) {
+    return this.http.put(`${environment.apiUrl}/api/products/${product_id}`, data).toPromise();
+  }
+
+  public destroyProduct(product_id: number): Promise<any> {
+    return this.http.delete(`${environment.apiUrl}/api/products/${product_id}`).toPromise();
+  }
+
+  public storeProductTag(product_id: number, name: string): Promise<any> {
+    return this.http.post(`${environment.apiUrl}/api/products/tags`, {
+      name,
+      product_id
+    }).toPromise();
+  }
+
+  public updateTag(tag_id: number, name: string) {
+    return this.http.put(`${environment.apiUrl}/api/products/tags/${tag_id}`, {
+      name
+    }).toPromise();
+  }
+
+  public destroyTag(product_id: number, tag_id: number): Promise<any> {
+    const params = new HttpParams().set('product_id', product_id.toString());
+    return this.http.delete(`${environment.apiUrl}/api/products/tags/${tag_id}`, {
+      params
+    }).toPromise();
+  }
+
   public getProductMedia(id: number): Promise<any> {
     return this.http.get(`${environment.apiUrl}/api/products/${id}/media`).toPromise();
   }
@@ -42,12 +70,27 @@ export class ProductService {
     return this.http.get(`${environment.apiUrl}/api/product/details`, { params }).toPromise();
   }
 
+  public getProductDetail(detail_id: number): Promise<any> {
+    return this.http.get(`${environment.apiUrl}/api/product/details/${detail_id}`).toPromise();
+  }
+
   public storeProductDetail(product_id: number, name: string, description: string): Promise<any> {
     return this.http.post(`${environment.apiUrl}/api/product/details`, {
       name,
       description,
       product_id
     }).toPromise();
+  }
+
+  public updateProductDetail(detail_id: number, name: string, description: string): Promise<any> {
+    return this.http.put(`${environment.apiUrl}/api/product/details/${detail_id}`, {
+      name,
+      description
+    }).toPromise();
+  }
+
+  public destroyProductDetail(detail_id: number): Promise<any> {
+    return this.http.delete(`${environment.apiUrl}/api/product/details/${detail_id}`).toPromise();
   }
 
   public getProductFeatures(product_id: number): Promise<any> {

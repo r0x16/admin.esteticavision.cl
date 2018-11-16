@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()">
+  <h2>Eliminar Categoría</h2>
+  <mat-dialog-content>
+    <div class="alert alert-danger">
+      Atención! se eliminará el detalle <strong>{{detail?.name}}</strong>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close [disabled]="lockForm">Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="lockForm">Aceptar</button>
+  </mat-dialog-actions>
+</form>

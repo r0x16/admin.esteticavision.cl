@@ -1,0 +1,23 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="formData">
+    <h2 mat-dialog-title>Crear Detalle de producto</h2>
+  
+    <mat-dialog-content>
+      
+      <mat-form-field class="full-width-modal">
+        <input type="text" matInput placeholder="Parámetro" formControlName="name">
+      </mat-form-field>
+  
+      <mat-form-field class="full-width-modal">
+        <input type="text" matInput placeholder="Valor" formControlName="description">
+      </mat-form-field>
+    </mat-dialog-content>
+  
+    <mat-dialog-actions>
+      <button mat-raised-button [mat-dialog-close]="false" [disabled]="lockForm">Cancelar</button>
+      <button mat-raised-button color="primary" [disabled]="lockForm">Aceptar</button>
+    </mat-dialog-actions>
+  
+    <mat-progress-bar mode="indeterminate" *ngIf="lockForm"></mat-progress-bar>
+  
+  </form>
+  

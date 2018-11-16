@@ -1,0 +1,18 @@
+<form (ngSubmit)="onSubmit()">
+    <h2>Eliminar Elemento multimedia</h2>
+    <mat-dialog-content>
+      <div class="alert alert-danger">
+        <div>Atención! se eliminará el elemento multimedia <strong>{{media.name}}</strong></div>
+        <div>Esto incluye la eliminación de todo lo siguiente:</div>
+        <ul>
+          <li>El objeto multimedia</li>
+          <li>Todas las asociaciones con productos</li>
+          <li>Todas las asociaciones con categorías</li>
+        </ul>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-raised-button mat-dialog-close [disabled]="lockForm">Cancelar</button>
+      <button mat-raised-button color="primary" [disabled]="lockForm">Aceptar</button>
+    </mat-dialog-actions>
+  </form>

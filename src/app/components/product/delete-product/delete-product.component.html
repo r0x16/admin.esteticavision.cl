@@ -1,0 +1,20 @@
+<form (ngSubmit)="onSubmit()">
+  <h2>Eliminar Producto</h2>
+  <mat-dialog-content>
+    <div class="alert alert-danger">
+      <div>Atención! se eliminará el producto <strong>{{product.name}}</strong></div>
+      <div>Esto incluye la eliminación de todo lo siguiente:</div>
+      <ul>
+        <li>El objeto de producto</li>
+        <li>Todos los registros de compra de ese producto o adición a un carrito de compra</li>
+        <li>Todas las asociaciones con elementos multimedia</li>
+        <li>Los detalles y características del producto</li>
+        <li>Las etiquetas asociadas al producto</li>
+      </ul>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close [disabled]="lockForm">Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="lockForm">Aceptar</button>
+  </mat-dialog-actions>
+</form>
