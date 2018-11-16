@@ -1,0 +1,8 @@
+h2 {
+    font-size: 1.2em;
+    color: #444;
+    font-weight: bolder;
+    border-bottom: 1px solid #DDD;
+    padding-bottom: 3px;
+    margin: 5px 0;
+}

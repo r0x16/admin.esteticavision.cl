@@ -48,6 +48,12 @@ import { ProductDangerComponent } from '../components/product/product-danger/pro
 import { DeleteProductComponent } from '../components/product/delete-product/delete-product.component';
 import { GalleryComponent } from '../components/multimedia/gallery/gallery.component';
 import { DeleteMediaComponent } from '../components/multimedia/delete-media/delete-media.component';
+import { SettingsComponent } from '../components/settings/settings.component';
+import { IndexComponent } from '../components/settings/index/index.component';
+import { CarouselComponent } from '../components/settings/index/carousel/carousel.component';
+import { SettingsService } from '../services/settings.service';
+import { CreateCarouselComponent } from '../components/settings/index/create-carousel/create-carousel.component';
+import { DeleteCarouselComponent } from '../components/settings/index/delete-carousel/delete-carousel.component';
 
 const appRoutes = [{
   path: 'admin',
@@ -58,7 +64,8 @@ const appRoutes = [{
     { path: 'dashboard', component: DashboardComponent },
     { path: 'media', component: MultimediaComponent },
     { path: 'categories', component: CategoryComponent },
-    { path: 'products', component: ProductComponent }
+    { path: 'products', component: ProductComponent },
+    { path: 'settings', component: SettingsComponent }
   ]
 }];
 
@@ -105,7 +112,12 @@ const appRoutes = [{
     ProductDangerComponent,
     DeleteProductComponent,
     GalleryComponent,
-    DeleteMediaComponent
+    DeleteMediaComponent,
+    SettingsComponent,
+    IndexComponent,
+    CarouselComponent,
+    CreateCarouselComponent,
+    DeleteCarouselComponent
   ],
   entryComponents: [
     CreateCategoryComponent,
@@ -125,7 +137,9 @@ const appRoutes = [{
     CreateTagComponent,
     EditProductComponent,
     DeleteProductComponent,
-    DeleteMediaComponent
+    DeleteMediaComponent,
+    CreateCarouselComponent,
+    DeleteCarouselComponent
   ],
   providers: [
     AuthGuardService,
@@ -133,7 +147,8 @@ const appRoutes = [{
     YoutubeService,
     CategoryService,
     ProductService,
-    BrandService
+    BrandService,
+    SettingsService
   ]
 })
 export class AdminRoutingModule { }

@@ -1,0 +1,35 @@
+<div class="alert alert-info">
+  Selecciona las imagenes que serán mostradas en el carrusel de la página de inicio
+</div>
+
+<div class="text-right">
+  <button mat-raised-button color="primary" (click)="create()">Nuevo Elemento</button>
+</div>
+
+<div class="list-group" *ngIf="items">
+  <div class="list-group-item flex-column align-items-start">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-4"><small><strong>Título</strong></small></div>
+      <div class="col-md-5"><small><strong>Descripción</strong></small></div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+
+  <div class="list-group-item flex-column align-items-start" *ngFor="let item of items">
+    <div class="row">
+      <div class="col-md-1">
+        <img src="{{item.multimedia.thumbnail}}" alt="{{item.multimedia.name}}" width="50" height="50">
+      </div>
+      <div class="col-md-4">
+        <h5>{{item.title}}</h5>
+      </div>
+      <div class="col-md-5"><small>{{item.description}}</small></div>
+      <div class="col-md-2">
+        <button (click)="removeItem(item.id)" mat-button>
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

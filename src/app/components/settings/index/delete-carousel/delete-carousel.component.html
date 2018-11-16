@@ -1,0 +1,15 @@
+<form (ngSubmit)="onSubmit()">
+  <h2>Eliminar Elemento multimedia desde Carrusel</h2>
+  <mat-dialog-content>
+    <div class="alert alert-info">
+      ¿Estás seguro de eliminar el elemento multimedia del carrusel en la página principal?
+    </div>
+    <div class="alert alert-warning">
+      Atención! No se eliminará el elemento multimedia desde la galería.
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close [disabled]="lockForm">Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="lockForm">Aceptar</button>
+  </mat-dialog-actions>
+</form>
