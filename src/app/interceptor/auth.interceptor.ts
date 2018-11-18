@@ -31,6 +31,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }
         return next.handle(req)
         .catch(err => {
+            console.log(err);
             const refresh_token = this.auth.getRefreshToken();
             if ((err.status === 401 || err.status === 403) && err.error.error !== 'invalid_request' && refresh_token !== null) {
                 return this.auth.tokenRefreshRequest(refresh_token).mergeMap(data => {
