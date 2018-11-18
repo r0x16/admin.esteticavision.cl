@@ -54,6 +54,7 @@ import { CarouselComponent } from '../components/settings/index/carousel/carouse
 import { SettingsService } from '../services/settings.service';
 import { CreateCarouselComponent } from '../components/settings/index/create-carousel/create-carousel.component';
 import { DeleteCarouselComponent } from '../components/settings/index/delete-carousel/delete-carousel.component';
+import { HomeBannerComponent } from '../components/settings/index/home-banner/home-banner.component';
 
 const appRoutes = [{
   path: 'admin',
@@ -117,7 +118,8 @@ const appRoutes = [{
     IndexComponent,
     CarouselComponent,
     CreateCarouselComponent,
-    DeleteCarouselComponent
+    DeleteCarouselComponent,
+    HomeBannerComponent
   ],
   entryComponents: [
     CreateCategoryComponent,

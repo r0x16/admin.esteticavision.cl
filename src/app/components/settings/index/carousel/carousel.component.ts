@@ -16,7 +16,7 @@ export class CarouselComponent implements OnInit {
   constructor(private ss: SettingsService,
               private dialog: MatDialog) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.loadItems();
   }
 

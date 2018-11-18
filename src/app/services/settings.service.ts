@@ -19,4 +19,22 @@ export class SettingsService {
     return this.http.delete(`${environment.apiUrl}/api/carousel/${id}`).toPromise();
   }
 
+  public getSetting(key: string): Promise<any> {
+    let params = new HttpParams();
+    params = params.set('key', key);
+    return this.http.get(`${environment.apiUrl}/api/setting/get`, { params }).toPromise();
+  }
+
+  public setSetting(key: string, value: string): Promise<any> {
+    return this.http.post(`${environment.apiUrl}/api/setting/set`, {
+      key, value
+    }).toPromise();
+  }
+
+  public forgetSetting(key: string): Promise<any> {
+    return this.http.delete(`${environment.apiUrl}/api/setting/forget`, {
+      params: {key}
+    }).toPromise();
+  }
+
 }

@@ -1,8 +1,17 @@
 h2 {
     font-size: 1.2em;
-    color: #444;
-    font-weight: bolder;
-    border-bottom: 1px solid #DDD;
-    padding-bottom: 3px;
+    color: #FFF;
+    background-color: #343f48;
+    font-weight: normal;
+    border-left: 5px solid #DDD;
+    padding: 5px 10px;
     margin: 5px 0;
+}
+
+.title-description {
+    color: #555;
+    background-color: #EFEFEF;
+    border-left: 5px solid #DDD;
+    padding: 5px 10px;
+    font-size: 0.7em;
 }
