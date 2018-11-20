@@ -59,6 +59,9 @@ import { QuotationComponent } from '../components/quotation/quotation.component'
 import { QuotationService } from '../services/quotation.service';
 import { EditStatusComponent } from '../components/quotation/edit-status/edit-status.component';
 import { ShowQuotationComponent } from '../components/quotation/show-quotation/show-quotation.component';
+import { UsersComponent } from '../components/users/users.component';
+import { UserService } from '../services/user.service';
+import { InvoiceDataComponent } from '../components/users/invoice-data/invoice-data.component';
 
 const appRoutes = [{
   path: 'admin',
@@ -71,7 +74,8 @@ const appRoutes = [{
     { path: 'categories', component: CategoryComponent },
     { path: 'products', component: ProductComponent },
     { path: 'settings', component: SettingsComponent },
-    { path: 'quotations', component: QuotationComponent }
+    { path: 'quotations', component: QuotationComponent },
+    { path: 'users', component: UsersComponent }
   ]
 }];
 
@@ -127,7 +131,9 @@ const appRoutes = [{
     HomeBannerComponent,
     QuotationComponent,
     EditStatusComponent,
-    ShowQuotationComponent
+    ShowQuotationComponent,
+    UsersComponent,
+    InvoiceDataComponent
   ],
   entryComponents: [
     CreateCategoryComponent,
@@ -151,7 +157,8 @@ const appRoutes = [{
     CreateCarouselComponent,
     DeleteCarouselComponent,
     EditStatusComponent,
-    ShowQuotationComponent
+    ShowQuotationComponent,
+    InvoiceDataComponent
   ],
   providers: [
     AuthGuardService,
@@ -161,7 +168,8 @@ const appRoutes = [{
     ProductService,
     BrandService,
     SettingsService,
-    QuotationService
+    QuotationService,
+    UserService
   ]
 })
 export class AdminRoutingModule { }

@@ -1,0 +1,23 @@
+<h2>Datos de Facturación</h2>
+<mat-dialog-content>
+  <ul class="list-group">
+    <li class="list-group-item">
+      Razón social: <strong>{{data.name}}</strong>
+    </li>
+    <li class="list-group-item">
+      RUT: <strong>{{data.tax_identification_id}}</strong>
+    </li>
+    <li class="list-group-item">
+      Giro: <strong>{{data.bussiness_activity}}</strong>
+    </li>
+    <li class="list-group-item">
+      Dirección: <strong>{{data.address}}</strong>
+    </li>
+    <li class="list-group-item">
+      Teléfono: <strong>{{data.phone}}</strong>
+    </li>
+  </ul>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>

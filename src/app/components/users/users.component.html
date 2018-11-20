@@ -1,0 +1,36 @@
+<h1>Usuarios</h1>
+<mat-card>
+    <input [(ngModel)]="query" (keyup)="onSearch()" type="text" name="query_users" id="query_users" class="form-control" placeholder="Buscar Usuarios">
+    <div *ngIf="users">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Nombre</th>
+            <th>Correo electrónico</th>
+            <th>Identidades</th>
+            <th>Cotizaciones</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of users.data">
+            <td>
+              <img [src]="u.photo" alt="[Sin foto]" *ngIf="u.photo" width="50">
+            </td>
+            <td>{{u.name}}</td>
+            <td>{{u.email}}</td>
+            <td>
+              <img src="assets/images/{{identities[identity.provider]}}.png" [alt]="identities[identity.provider]" *ngFor="let identity of u.identity">
+            </td>
+            <td>{{u.quotations_count}}</td>
+            <td>
+              <button mat-button (click)="showInvoiceData(u.invoice_data)" *ngIf="u.invoice_data">
+                <mat-icon>contact_phone</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</mat-card>
