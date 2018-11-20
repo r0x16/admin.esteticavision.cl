@@ -55,6 +55,10 @@ import { SettingsService } from '../services/settings.service';
 import { CreateCarouselComponent } from '../components/settings/index/create-carousel/create-carousel.component';
 import { DeleteCarouselComponent } from '../components/settings/index/delete-carousel/delete-carousel.component';
 import { HomeBannerComponent } from '../components/settings/index/home-banner/home-banner.component';
+import { QuotationComponent } from '../components/quotation/quotation.component';
+import { QuotationService } from '../services/quotation.service';
+import { EditStatusComponent } from '../components/quotation/edit-status/edit-status.component';
+import { ShowQuotationComponent } from '../components/quotation/show-quotation/show-quotation.component';
 
 const appRoutes = [{
   path: 'admin',
@@ -66,7 +70,8 @@ const appRoutes = [{
     { path: 'media', component: MultimediaComponent },
     { path: 'categories', component: CategoryComponent },
     { path: 'products', component: ProductComponent },
-    { path: 'settings', component: SettingsComponent }
+    { path: 'settings', component: SettingsComponent },
+    { path: 'quotations', component: QuotationComponent }
   ]
 }];
 
@@ -119,7 +124,10 @@ const appRoutes = [{
     CarouselComponent,
     CreateCarouselComponent,
     DeleteCarouselComponent,
-    HomeBannerComponent
+    HomeBannerComponent,
+    QuotationComponent,
+    EditStatusComponent,
+    ShowQuotationComponent
   ],
   entryComponents: [
     CreateCategoryComponent,
@@ -141,7 +149,9 @@ const appRoutes = [{
     DeleteProductComponent,
     DeleteMediaComponent,
     CreateCarouselComponent,
-    DeleteCarouselComponent
+    DeleteCarouselComponent,
+    EditStatusComponent,
+    ShowQuotationComponent
   ],
   providers: [
     AuthGuardService,
@@ -150,7 +160,8 @@ const appRoutes = [{
     CategoryService,
     ProductService,
     BrandService,
-    SettingsService
+    SettingsService,
+    QuotationService
   ]
 })
 export class AdminRoutingModule { }

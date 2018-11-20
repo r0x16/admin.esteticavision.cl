@@ -1,0 +1,41 @@
+<h1>Cotizaciones</h1>
+<mat-card>
+  <div *ngIf="quotations && status">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Cliente</th>
+          <th>Estado</th>
+          <th></th>
+          <th>Fecha</th>
+          <th>Correo Adicional</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let q of quotations.data">
+          <td>{{q.id}}</td>
+          <td>{{q.user.name}}</td>
+          <td>
+            <span class="badge badge-{{status[q.status].color}}">
+                {{status[q.status].message}}
+            </span>
+          </td><td>
+            <button mat-button (click)="editState(q)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+          <td>{{q.created_at}}</td>
+          <td>{{q.email_cc}}</td>
+          <td>
+              <button mat-button (click)="show(q)">
+                <mat-icon>remove_red_eye</mat-icon>
+              </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator [length]="quotations.total" [pageSize]="quotations.per_page" (page)="setPage($event)"></mat-paginator>
+  </div>
+</mat-card>

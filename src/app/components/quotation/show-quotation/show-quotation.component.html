@@ -1,0 +1,39 @@
+<h2>Cotización # {{quotation.id}}</h2>
+<mat-dialog-content>  
+  <h4>Cliente</h4>
+  <div class="row">
+    <div class="col-md-9">
+      <div><strong>{{quotation.user.name}}</strong></div>
+      <div>{{quotation.user.email}}</div>
+    </div>
+    <div class="col-md-3">
+      <img src="{{quotation.user.photo}}" alt="{{quotation.user.email}}" *ngIf="quotation.user.photo" width="100">
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <h4>Detalles cotización</h4>
+  <div>Fecha Emisión: <small>{{quotation.created_at}}</small></div>
+  <div>Estado: <span class="badge badge-{{status[quotation.status].color}}" *ngIf="status">{{status[quotation.status].message}}</span></div>
+
+  <table class="table table-hover" *ngIf="detail">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th></th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of detail; let i = index">
+        <td>{{i}}</td>
+        <td><img src="{{p.thumbnail}}" alt="miniatura" width="50"></td>
+        <td>{{p.name}}</td>
+        <td>{{p.pivot.quantity}}</td>
+      </tr>
+    </tbody>
+  </table>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>
